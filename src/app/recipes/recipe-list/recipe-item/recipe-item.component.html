@@ -1,16 +1,32 @@
 <a href="#" class="list-group-item clearfix" (click)="onSelected()">
-  <div class="card border-2 p-2 m-1 d-flex" style="height: 130px">
-    <div class="">
-      <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-      <p class="list-group-item-text">{{ recipe.description }}</p>
+  <div
+    class="card border-2 p-2 m-1 d-flex"
+    style="
+      min-height: 100px;
+      max-height: fit-content;
+      width: fit-content;
+      border-radius: 5px;
+      border: 2px solid #f0f0f0;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+    "
+  >
+    <div class="row">
+      <div class="col-md-8">
+        <h4 class="list-group-item-heading text-center">
+          {{ recipe.name }}
+        </h4>
+        <p class="list-group-item-text text-center" style="width: 100%">
+          {{ recipe.description }}
+        </p>
+      </div>
+      <div class="col-md-4">
+        <img
+          [src]="recipe.imagePath"
+          alt="{{ recipe.name }}"
+          class="img-responsive recipeImage"
+          style="height: 80px; border-radius: 5px"
+        />
+      </div>
     </div>
-    <span class="" style="transform: translate(330px, -62px); width: 160px">
-      <img
-        [src]="recipe.imagePath"
-        alt="{{ recipe.name }}"
-        class="img-responsive recipeImage"
-        style="height: 80px; border-radius: 5px"
-      />
-    </span>
   </div>
 </a>
