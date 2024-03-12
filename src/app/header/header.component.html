@@ -12,10 +12,15 @@
   <div class="collapse navbar-collapse" id="navbar">
     <ul class="navbar-nav px-5">
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="onSelect('recipe')">Recipes</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/recipes"
+          >Recipes</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="onSelect('shoppinList')"
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          routerLink="/shopping-list"
           >Shopping List</a
         >
       </li>
@@ -30,8 +35,8 @@
           Manage
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Save Data</a>
-          <a class="dropdown-item" href="#">Fetch Data</a>
+          <a class="dropdown-item" style="cursor: pointer">Save Data</a>
+          <a class="dropdown-item" style="cursor: pointer">Fetch Data</a>
         </div>
       </li>
     </ul>

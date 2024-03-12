@@ -47,6 +47,10 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
+  getRecipe(inedx: number) {
+    return this.recipes[inedx];
+  }
+
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     ingredients.forEach((ingredient) => {
       this.slService.addIngredient(ingredient);

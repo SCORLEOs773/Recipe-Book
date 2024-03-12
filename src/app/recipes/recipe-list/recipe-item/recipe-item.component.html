@@ -1,4 +1,9 @@
-<a href="#" class="list-group-item clearfix" (click)="onSelected()">
+<a
+  class="list-group-item clearfix"
+  routerLinkActive="active"
+  [routerLink]="[index]"
+  style="cursor: pointer"
+>
   <div
     class="card border-2 p-2 m-1 d-flex"
     style="
