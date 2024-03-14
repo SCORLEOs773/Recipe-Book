@@ -2,15 +2,16 @@ import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 
 export class ShoppingListService {
-  unsubscrice() {
-    throw new Error('Method not implemented.');
-  }
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
   private ingridients: Ingredient[] = [
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10),
   ];
+
+  unsubscrice() {
+    throw new Error('Method not implemented.');
+  }
 
   getIngredient(index: number): Ingredient {
     return this.ingridients[index];
@@ -27,6 +28,16 @@ export class ShoppingListService {
 
   addingredients(ingridients: Ingredient[]) {
     this.ingridients.push(...ingridients);
+    this.ingredientsChanged.next(this.ingridients.slice());
+  }
+
+  updateIngridient(index: number, newIngridient: Ingredient) {
+    this.ingridients[index] = newIngridient;
+    this.ingredientsChanged.next(this.ingridients.slice());
+  }
+
+  deleteIngredient(index: number) {
+    this.ingridients.splice(index, 1);
     this.ingredientsChanged.next(this.ingridients.slice());
   }
 }
