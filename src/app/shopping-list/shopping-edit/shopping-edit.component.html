@@ -1,49 +1,53 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)="onAddUpdateItem(f)" #f="ngForm">
+    <form (ngSubmit)="onAddUpdateItem(f)" #f="ngForm" class="custom-form">
       <div class="row">
-        <div class="col-sm-5 form-group">
-          <label for="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            class="form-control"
-            ngModel
-            required
-          />
+        <div class="col-sm-5">
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              ngModel
+              required
+            />
+          </div>
         </div>
-        <div class="col-sm-2 form-group">
-          <label for="amount">Amount</label>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            class="form-control"
-            ngModel
-            required
-            pattern="^[1-9]+[0-9]*$"
-          />
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="amount" class="form-label">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              class="form-control"
+              ngModel
+              required
+              pattern="^[1-9]+[0-9]*$"
+            />
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 m-2">
+        <div class="col-xs-12 text-center">
           <button
-            class="btn mx-1 btn-success"
+            class="btn btn-success btn-action"
             type="submit"
             [disabled]="!f.valid"
           >
             {{ editMode ? "Update" : "Add" }}
           </button>
           <button
-            class="btn mx-1 btn-danger"
+            class="btn btn-danger btn-action"
             type="button"
             (click)="onDelete()"
             *ngIf="editMode"
           >
             Delete
           </button>
-          <button class="btn mx-1 btn-info" (click)="onClear()" type="button">
+          <button class="btn btn-info btn-action" (click)="onClear()" type="button">
             Clear
           </button>
         </div>

@@ -1,0 +1,42 @@
+.recipe-image {
+  border-radius: 20px;
+}
+
+.recipe-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.recipe-description {
+  font-size: 18px;
+}
+
+.ingredient-name {
+  font-weight: bold;
+}
+
+
+/* Custom scrollbar */
+.scrollbar {
+  overflow-y: scroll;
+  height: 25vh;
+  scrollbar-width: thin;
+  scrollbar-color: #4caf50 #dcedc8; /* Green track with light green handle */
+}
+
+/* Track */
+.scrollbar::-webkit-scrollbar {
+  width: 12px;
+  background-color: #dcedc8; /* Light green track */
+}
+
+/* Handle */
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* Green handle */
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #388e3c; /* Darker green on hover */
+}

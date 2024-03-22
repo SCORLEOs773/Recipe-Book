@@ -1,61 +1,64 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12 text-center">
     <img
       [src]="recipe.imagePath"
       alt="{{ recipe.name }}"
-      class="img-responsive"
-      style="height: 45vh"
+      class="img-responsive recipe-image mb-4"
+      style="height: 45vh; max-width: 100%; border: 2px solid crimson; border-radius: 20px;"
     />
   </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>{{ recipe.name }}</h1>
-    </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 my-1">
+    <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
   </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="btn-group">
-        <button
-          type="button"
-          class="btn btn-info dropdown-toggle"
-          data-bs-toggle="dropdown"
-        >
-          Manage Recipe <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li>
-            <a
-              class="dropdown-item"
-              (click)="onAddToShoppingList()"
-              style="cursor: pointer"
-              >To Shopping List</a
-            >
-          </li>
-          <li>
-            <a
-              style="cursor: pointer"
-              (click)="onEditRecipe()"
-              class="dropdown-item"
-              >Edit Recipe</a
-            >
-          </li>
-          <li>
-            <a style="cursor: pointer" (click)="onDeleteRecipe()" class="dropdown-item">Delete Recipe</a>
-          </li>
-        </ul>
-      </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 text-center my-1">
+    <div class="btn-group">
+      <button
+        type="button"
+        class="btn btn-info dropdown-toggle"
+        data-bs-toggle="dropdown"
+      >
+        Manage Recipe <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a
+            class="dropdown-item"
+            (click)="onAddToShoppingList()"
+            style="cursor: pointer"
+            >To Shopping List</a
+          >
+        </li>
+        <li>
+          <a
+            style="cursor: pointer"
+            (click)="onEditRecipe()"
+            class="dropdown-item"
+            >Edit Recipe</a
+          >
+        </li>
+        <li>
+          <a style="cursor: pointer" (click)="onDeleteRecipe()" class="dropdown-item">Delete Recipe</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">{{ recipe.description }}</div>
+  <div class="col-xs-12 text-center my-2 recipe-description">{{ recipe.description }}</div>
 </div>
-<div class="row" style="overflow-y: scroll; height: 25vh">
+
+
+<div class="row scrollbar">
   <div class="col-xs-12">
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
-        {{ ingredient.name }} - {{ ingredient.amount }}
+        <span class="ingredient-name">{{ ingredient.name.toUpperCase() }}</span> : {{ ingredient.amount }}
       </li>
     </ul>
   </div>
 </div>
+

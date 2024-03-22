@@ -40,6 +40,21 @@ export class RecipeService {
         new Ingredient('Salt', 1),
       ]
     ),
+    new Recipe(
+      'Ultimate chocolate cake',
+      'Indulge yourself with this ultimate chocolate ganache cake recipe that is beautifully moist, rich and fudgy. Perfect for a celebration or an afternoon tea',
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1043451_11-4713959.jpg?quality=90&webp=true&resize=300,272',
+      [
+        new Ingredient('Butter', 1),
+        new Ingredient('Sugar', 1),
+        new Ingredient('Vanilla Extract', 1),
+        new Ingredient('Chocolate', 1),
+        new Ingredient('Cream', 1),
+        new Ingredient('Self Rising Flour', 1),
+        new Ingredient('Golden Caster Sugar', 1),
+        new Ingredient('Salt', 1),
+      ]
+    ),
   ];
 
   constructor(private slService: ShoppingListService) {}

@@ -1,0 +1,43 @@
+.custom-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+
+.btn-action {
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 10px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: white;
+}
