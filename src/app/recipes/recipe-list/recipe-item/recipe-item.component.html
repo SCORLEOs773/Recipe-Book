@@ -2,34 +2,35 @@
   class="list-group-item clearfix"
   routerLinkActive="active"
   [routerLink]="[index]"
-  style="cursor: pointer"
+  style="cursor: pointer;"
 >
   <div
     class="card border-2 p-2 m-1 d-flex"
     style="
       min-height: 100px;
       max-height: fit-content;
-      width: fit-content;
+      width: 27vw;
       border-radius: 5px;
-      border: 2px solid #f0f0f0;
+      border: 2px solid #f8f9fa;
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+      background-image: url(https://marketplace.canva.com/EAFCytpuJ08/1/0/1600w/canva-green-wateroclor-leaf-linktree-background-0Mp0WYk6_8E.jpg);
     "
   >
     <div class="row">
       <div class="col-md-8">
-        <h4 class="list-group-item-heading text-center">
-          {{ recipe.name }}
+        <h4 class="list-group-item-heading text-center p-3 text-primary">
+          {{ recipe.name}}
         </h4>
-        <p class="list-group-item-text text-center" style="width: 100%">
+        <p class="list-group-item-text text-center" style="width: 100%; color:rgb(57, 57, 223); font-size: large;">
           {{ recipe.description }}
         </p>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" style="display: flex; align-items: center;">
         <img
           [src]="recipe.imagePath"
           alt="{{ recipe.name }}"
           class="img-responsive recipeImage"
-          style="height: 80px; border-radius: 5px"
+          style="height: 130px; width: 140px; border-radius: 5px; border: 2px solid yellow;"
         />
       </div>
     </div>
