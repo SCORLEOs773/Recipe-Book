@@ -1,28 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand px-5" href="#">Recipe Book</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f0f0f0;">
+  <a class="navbar-brand px-5" href="#" style="font-family: 'Arial', sans-serif; font-size: 1.5rem; color: #333;">The Food Book</a>
   <button
     class="navbar-toggler"
     type="button"
     data-toggle="collapse"
     data-target="#navbar"
+    aria-controls="navbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
   >
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbar">
     <ul class="navbar-nav px-5">
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/recipes"
-          >Recipes</a
-        >
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" routerLink="/recipes"
+          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #555;"
+        >Recipes</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" [routerLinkActive]="['active']">
         <a
           class="nav-link"
-          routerLinkActive="active"
           routerLink="/shopping-list"
-          >Shopping List</a
-        >
+          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #555;"
+        >Shopping List</a>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto px-5">
@@ -31,12 +33,15 @@
           class="nav-link dropdown-toggle"
           role="button"
           data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #555;"
         >
           Manage
         </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" style="cursor: pointer">Save Data</a>
-          <a class="dropdown-item" style="cursor: pointer">Fetch Data</a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a class="dropdown-item" style="cursor: pointer; animation: fadeIn 0.5s;">Save Data</a>
+          <a class="dropdown-item" style="cursor: pointer; animation: fadeIn 0.5s;">Fetch Data</a>
         </div>
       </li>
     </ul>
