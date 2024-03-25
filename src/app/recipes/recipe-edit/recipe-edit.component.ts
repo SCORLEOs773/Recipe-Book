@@ -64,6 +64,12 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
+  onDeleteIngredient() {
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(
+      (<FormArray>this.recipeForm.get('ingredients')).length - 1
+    );
+  }
+
   private initForm() {
     let recipeName = '';
     let recipeImagePath = '';

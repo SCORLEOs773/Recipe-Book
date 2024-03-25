@@ -1,20 +1,20 @@
 <div class="row">
-  <div class="col-xs-12 text-center">
+  <div class="col-12 text-center">
     <img
       [src]="recipe.imagePath"
       alt="{{ recipe.name }}"
-      class="img-responsive recipe-image mb-4"
+      class="img-responsive img-fluid recipe-image mb-4"
       style="height: 45vh; max-width: 100%; border: 2px solid crimson; border-radius: 20px;"
     />
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12 my-1">
+  <div class="col-12 my-1">
     <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12 text-center my-1">
+  <div class="col-12 text-center my-1">
     <div class="btn-group">
       <button
         type="button"
@@ -48,12 +48,12 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12 text-center my-2 recipe-description">{{ recipe.description }}</div>
+  <div class="col-12 text-center my-2 recipe-description">{{ recipe.description }}</div>
 </div>
 
 
 <div class="row scrollbar">
-  <div class="col-xs-12">
+  <div class="col-12">
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
         <span class="ingredient-name">{{ ingredient.name.toUpperCase() }}</span> : {{ ingredient.amount }}
