@@ -4,7 +4,7 @@
   </div>
 </div>
 <hr />
-<div class="row border-2">
+<div class="row border-2 scrollbar" style="max-height:80vh; overflow-y: auto; overflow-x: hidden;">
     <app-recipe-item
     *ngFor="let recipeEl of recipes; let i = index"
     [recipe]="recipeEl"
