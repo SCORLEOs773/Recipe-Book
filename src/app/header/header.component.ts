@@ -7,7 +7,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   @Output() featureSelected = new EventEmitter<string>();
-  // dataStorageService: any;
 
   constructor(private dataStorageService: DataStorageService) {}
 
@@ -19,7 +18,7 @@ export class HeaderComponent {
     this.dataStorageService.storeRecipes();
 }
 onFetchData(){
-  this.dataStorageService.fetchRecipes();
+  this.dataStorageService.fetchRecipes().subscribe();
 }
 
 }
