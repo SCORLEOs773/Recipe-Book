@@ -3,8 +3,8 @@
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-12">
-          <button class="btn btn-success" type="submit" [disabled]="!recipeForm.valid">Save</button>
-          <button class="btn btn-danger mx-2 my-4" (click)="onCancelRecipe()">Cancel</button>
+          <button class="btn btn-success mx-3" type="submit" [disabled]="!recipeForm.valid">Save</button>
+          <button class="btn btn-danger 2 my-4" (click)="onCancelRecipe()">Cancel</button>
         </div>
       </div>
       <div class="row">
@@ -34,9 +34,12 @@
           </div>
         </div>
       </div>
+
+
+      <div class="d-flex flexBox justify-content-between">
       <div class="row">
         <div class="col-12">
-          <img [src]="imagePath.value" class="img-fluid mt-4" alt="" style="height: 30vh; width: 40vh; background-size: cover;">
+          <img [src]="imagePath.value" class="img-fluid mt-4" alt="" style="height: 29vh; width: 40vh; background-size: cover;">
         </div>
       </div>
       <div class="row">
@@ -53,22 +56,26 @@
               id="description"
               class="form-control"
               formControlName="description"
-              rows="6"
+              rows="11"
+              style="width: 18vw;"
             ></textarea>
           </div>
         </div>
       </div>
+    </div>
+
+
       <div class="row mt-3">
         <div class="col-12" formArrayName="ingredients">
-          <div class="overflow-auto" style="max-height: 40vh;">
+          <div class="scrollbar" style="overflow-y: auto; overflow-x: hidden; max-height: 40vh;">
             <div class="row my-2" *ngFor="let ingredientCtrl of getFormArray().controls; let i = index" [formGroupName]="i">
               <div class="col-8">
                 <input type="text" class="form-control" formControlName="name"/>
               </div>
-              <div class="col-sm-2">
+              <div class="col-2">
                 <input type="number" class="form-control" formControlName="amount"/>
               </div>
-              <div class="col-sm-2">
+              <div class="col-2">
                 <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">X</button>
               </div>
             </div>
