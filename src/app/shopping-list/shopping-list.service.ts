@@ -9,7 +9,7 @@ export class ShoppingListService {
     new Ingredient('Tomatoes', 10),
   ];
 
-  unsubscrice() {
+  unsubscribe() {
     throw new Error('Method not implemented.');
   }
 
