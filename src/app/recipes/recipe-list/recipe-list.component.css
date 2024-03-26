@@ -2,7 +2,7 @@
   border: 2px solid #f8b400;
 }
 
-* Custom scrollbar */
+* Custom scrollbar *
 .scrollbar {
   overflow-y: scroll;
   height: 25vh;

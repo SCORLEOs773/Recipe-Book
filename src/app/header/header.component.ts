@@ -40,4 +40,9 @@ onFetchData(){
   this.dataStorageService.fetchRecipes().subscribe();
 }
 
+onLogout()
+{
+  this.authService.logout();
+}
+
 }
