@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-xl-8 col-md-10">
-      <div class="alert alert-danger" *ngIf="error">
-        <p>{{error}}</p>
-      </div>
+
+      <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
+
       <div *ngIf="isLoading">
         <img src="../../assets/Bean Eater-1s-200px (1).gif" class="img-fluid" alt="Loading..."
         style="z-index: 2; margin-top:20vh; margin-left: 17vw; max-height: 100%; max-width: 100%;">
