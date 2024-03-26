@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-md-10">
+      <div class="alert alert-danger" *ngIf="error">
+        <p>{{error}}</p>
+      </div>
+      <div *ngIf="isLoading">
+        <img src="../../assets/Bean Eater-1s-200px (1).gif" class="img-fluid" alt="Loading..."
+        style="z-index: 2; margin-top:20vh; margin-left: 17vw; max-height: 100%; max-width: 100%;">
+      </div>
+      <div class="card mt-5 p-4 bg-success-subtle" *ngIf="!isLoading">
+
+        <h3 class="card-header text-center text-secondary">SignUp / Login</h3>
+
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" class="mt-4">
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" class="form-control" ngModel name="email" email required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" ngModel name="password" required minlength="6">
+          </div>
+
+          <div class="form-group mt-4">
+            <button class="btn btn-primary btn-block" style="margin-right: 2%;" type="submit" [disabled]="!authForm.valid">
+              {{ isLoggedIn ? "Login" : "Sign Up" }}
+            </button>
+            <button class="btn btn-info btn-block" type="button" (click)="onSwitchMode()">
+              Switch to {{ isLoggedIn ? "Sign Up" : "Login" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

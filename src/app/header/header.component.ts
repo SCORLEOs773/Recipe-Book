@@ -1,14 +1,33 @@
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import { User } from '../auth/user.model';
 import { DataStorageService } from './../shared/data-storage.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy{
   @Output() featureSelected = new EventEmitter<string>();
 
-  constructor(private dataStorageService: DataStorageService) {}
+  isAuthenticated = false;
+  private userSub: Subscription;
+
+  constructor(private dataStorageService: DataStorageService, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.userSub = this.authService.user.subscribe((user: User) => {
+      this.isAuthenticated = !!user;
+      console.log(!user);
+      console.log(!!user);
+        });
+      }
+
+    ngOnDestroy() {
+      this.userSub.unsubscribe();
+    }
+
 
   onSelect(feature: string) {
     this.featureSelected.emit(feature);

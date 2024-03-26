@@ -14,21 +14,42 @@
 
   <div class="collapse navbar-collapse" id="navbar">
     <ul class="navbar-nav px-5">
-      <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="nav-link" routerLink="/recipes"
+      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isAuthenticated">
+        <a
+          class="nav-link"
+          routerLink="/recipes"
           style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #555;"
         >Recipes</a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
+      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isAuthenticated">
         <a
           class="nav-link"
           routerLink="/shopping-list"
           style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #555;"
         >Shopping List</a>
       </li>
+      <!-- <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated">
+        <a
+          class="nav-link"
+          routerLink="/auth"
+          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #555;"
+        >Sign Up/Login</a>
+      </li> -->
     </ul>
-    <ul class="navbar-nav ms-auto px-5">
-      <li class="nav-item dropdown">
+    <ul class="navbar-nav ms-auto px-5 d-flex">
+      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated">
+        <a
+          class="nav-link"
+          routerLink="/auth"
+          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #555;"
+        >Sign Up/Login</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthenticated">
+        <a class="nav-link" style="cursor: pointer;">
+        Logout
+        </a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="isAuthenticated">
         <a
           class="nav-link dropdown-toggle"
           role="button"
