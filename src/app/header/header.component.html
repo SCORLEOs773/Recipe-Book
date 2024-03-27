@@ -2,19 +2,17 @@
   <a class="navbar-brand px-5 text-dark fw-bold" [routerLink]="['/auth']" routerLinkActive="router-link-active" style="font-family: 'Arial', sans-serif; font-size: 1.5rem; color: #333;">
     The Food Book
   </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbar"
-    aria-controls="navbar"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <button class="navbar-toggler"
+   type="button" data-bs-toggle="collapse"
+   data-bs-target="#navbarSupportedContent"
+   aria-controls="navbarSupportedContent"
+   aria-expanded="false"
+   aria-label="Toggle navigation"
+   >
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbar">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav px-5">
       <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isAuthenticated">
         <a
