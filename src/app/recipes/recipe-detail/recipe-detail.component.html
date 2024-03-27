@@ -1,3 +1,4 @@
+<div class="div for-bigger-screen" *ngIf="!isSmallScreen">
 <div class="row">
   <div class="col-12 text-center">
     <img
@@ -62,3 +63,54 @@
   </div>
 </div>
 
+</div>
+
+<!-- //----------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<div class="for-smaller-screen" *ngIf="isSmallScreen">
+
+  <!-- Button to trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recipeModal">
+  View Recipe
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="recipeModalLabel">{{ recipe.name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Recipe details content -->
+        <img
+          [src]="recipe.imagePath"
+          alt="{{ recipe.name }}"
+          class="img-responsive img-fluid recipe-image mb-4"
+          style="height: 45vh; max-width: 30vw; border: 2px solid crimson; border-radius: 20px;"
+        />
+        <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
+        <!-- Other recipe details -->
+        <div class="my-2 scrollbar" style="height: 6vh; overflow-y: auto;">
+          <div class="text-center my-2 recipe-description">{{ recipe.description }}</div>
+        </div>
+        <div class="scrollbar">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+              <span class="ingredient-name">{{ ingredient.name.toUpperCase() }}</span> : {{ ingredient.amount }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- Additional buttons if needed -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>

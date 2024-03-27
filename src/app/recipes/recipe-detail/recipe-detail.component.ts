@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -9,12 +9,21 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrl: './recipe-detail.component.css',
 })
 export class RecipeDetailComponent implements OnInit {
+
   recipe: Recipe;
+  isSmallScreen: boolean = false;
+
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = window.innerWidth <= 768;
+  }
+
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => (
