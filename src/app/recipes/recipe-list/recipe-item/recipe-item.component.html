@@ -9,7 +9,7 @@
     style="
       min-height: 20vh;
       max-height: fit-content;
-      width: 27vw;
+      width: 100%; /* Set width to 100% for responsiveness */
       border-radius: 5px;
       border: 2px solid #f8f9fa;
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
@@ -18,7 +18,7 @@
     "
   >
     <div class="row">
-      <div class="col-8">
+      <div class="col-md-8"> <!-- Adjust column width for smaller screens -->
         <h4 class="list-group-item-heading text-center p-3 text-primary" style="font-family: 'Arial Black', Gadget, sans-serif;">
           {{ recipe.name}}
         </h4>
@@ -26,12 +26,12 @@
           {{ recipe.description }}
         </p>
       </div>
-      <div class="col-4 d-none d-xl-block my-auto" style="display: flex; align-items: center;">
+      <div class="col-md-4 d-none d-xl-block my-auto" style="display: flex; align-items: center;">
         <img
           [src]="recipe.imagePath"
           alt="{{ recipe.name }}"
           class="img-responsive img-fluid recipeImage"
-          style="height: 15vh; width: 12vw; border-radius: 5px; border: 2px solid yellow;"
+          style="height: auto; max-width: 100%; border-radius: 5px; border: 2px solid yellow;"
         />
       </div>
     </div>
