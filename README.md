@@ -45,3 +45,30 @@ To run The Food Book locally on your machine, follow these steps:
 
 ```bash
 git clone https://github.com/your-username/your-repository.git
+
+## Usage
+
+Once the application is running, users can perform the following tasks:
+
+- Sign up for a new account or log in with existing credentials.
+- Navigate through recipes using the navigation bar.
+- View details of individual recipes by clicking on them.
+- Add ingredients from recipes to the shopping list.
+- Manage the shopping list by adding, editing, or deleting items.
+- Log out from the application when finished.
+
+## Contributing
+
+Contributions to The Food Book are welcome! To contribute, follow these steps:
+
+1. Fork the repository on GitHub.
+2. Create a new branch from the `main` branch for your changes.
+3. Make your modifications and commit them to your branch.
+4. Push your branch to your forked repository.
+5. Submit a pull request to the `main` branch of the original repository.
+
+Please follow the code formatting and style guidelines, and ensure that your changes are well-documented.
+
+## License
+
+The Food Book is distributed under the MIT License.
