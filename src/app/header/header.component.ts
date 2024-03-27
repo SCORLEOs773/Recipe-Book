@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy{
   @Output() featureSelected = new EventEmitter<string>();
