@@ -3,7 +3,7 @@
 The Food Book is a web application built with Angular that helps users manage their recipes and shopping lists. It offers features for creating, editing, and deleting recipes, as well as managing ingredients and shopping items. The application provides a seamless experience for organizing meals and grocery shopping.
 
 ## Links
-[The Food Book](https://thefoodbook.netlify.app/)
+[The Food Book Project Website](https://thefoodbook.netlify.app/){:target="_blank"}
 
 ## Table of Contents
 
