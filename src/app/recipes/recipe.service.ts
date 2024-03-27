@@ -3,13 +3,19 @@ import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RecipeService {
 
   recipeChanged = new Subject<Recipe[]>();
 
   [x: string]: any;
+
+
   // private recipes: Recipe[] = [
   //   new Recipe(
   //     'Easy Pancakes',
@@ -56,9 +62,10 @@ export class RecipeService {
   //     ]
   //   ),
   // ];
-private recipes: Recipe[] = [];
 
-  constructor(private slService: ShoppingListService) {}
+  private recipes: Recipe[] = [];
+
+  constructor(private slService: ShoppingListService, private http: HttpClient) {}
 
   getRecipes() {
     return this.recipes.slice();
@@ -72,6 +79,10 @@ private recipes: Recipe[] = [];
   getRecipe(inedx: number) {
     return this.recipes[inedx];
   }
+
+  // searchRecipes(query: string): Observable<Recipe[]> {
+  //   return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/search?query=${query}`);
+  // }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     ingredients.forEach((ingredient) => {
