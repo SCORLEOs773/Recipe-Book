@@ -4,6 +4,8 @@ The Food Book is a web application built with Angular that helps users manage th
 
 ## Links
 [The Food Book Project Website](https://thefoodbook.netlify.app/){:target="_blank"}
+<a href="https://thefoodbook.netlify.app/" target="_blank">The Food Book Project Website</a>
+
 
 ## Table of Contents
 
