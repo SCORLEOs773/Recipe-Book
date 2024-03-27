@@ -45,6 +45,7 @@ To run The Food Book locally on your machine, follow these steps:
 
 ```bash
 git clone https://github.com/your-username/your-repository.git
+```
 
 ## Usage
 
