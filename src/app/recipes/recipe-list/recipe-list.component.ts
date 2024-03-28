@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs/Subscription';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +14,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   subscription: Subscription;
   filteredRecipes: Recipe[] = [];
+  isSmallScreen: boolean = false;
 
   constructor(
     private recipeService: RecipeService,
@@ -25,6 +26,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.checkScreenSize();
     this.subscription = this.recipeService.recipeChanged.subscribe((recipes: Recipe[]) => {
       this.recipes = recipes;
     });
@@ -37,6 +39,15 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   onNewRecipe() {
     this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = window.innerWidth <= 768;
+  }
+
+  checkScreenSize() {
+    this.isSmallScreen = window.innerWidth <= 768;
   }
 
   filterRecipes() {

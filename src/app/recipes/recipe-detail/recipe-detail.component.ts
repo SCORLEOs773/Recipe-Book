@@ -6,7 +6,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
-  styleUrl: './recipe-detail.component.css',
+  styleUrls: ['./recipe-detail.component.css'],
 })
 export class RecipeDetailComponent implements OnInit {
 
@@ -25,6 +25,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkScreenSize();
     this.route.params.subscribe(
       (params: Params) => (
         this.id = +params['id'],
@@ -44,5 +45,9 @@ export class RecipeDetailComponent implements OnInit {
   onDeleteRecipe() {
     this.recipeService.deleteRecipe(this.id);
     this.router.navigate(['delete'], { relativeTo: this.route });
+  }
+
+  checkScreenSize() {
+    this.isSmallScreen = window.innerWidth <= 768;
   }
 }

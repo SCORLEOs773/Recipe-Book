@@ -69,10 +69,6 @@
 
 <div class="for-smaller-screen" *ngIf="isSmallScreen">
 
-  <!-- Button to trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recipeModal">
-  View Recipe
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
@@ -84,14 +80,56 @@
       </div>
       <div class="modal-body">
         <!-- Recipe details content -->
-        <img
-          [src]="recipe.imagePath"
-          alt="{{ recipe.name }}"
-          class="img-responsive img-fluid recipe-image mb-4"
-          style="height: 45vh; max-width: 30vw; border: 2px solid crimson; border-radius: 20px;"
-        />
+        <div class="row">
+          <div class="col-12 text-center">
+            <img
+              [src]="recipe.imagePath"
+              alt="{{ recipe.name }}"
+              class="img-responsive img-fluid recipe-image mb-4"
+              style="height: 45vh; max-width: 80vw; border: 2px solid crimson; border-radius: 20px;"
+            />
+          </div>
+        </div>
         <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
         <!-- Other recipe details -->
+
+
+        <div class="row">
+          <div class="col-12 text-center my-1">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-info dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                Manage Recipe <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    (click)="onAddToShoppingList()"
+                    style="cursor: pointer"
+                    >To Shopping List</a
+                  >
+                </li>
+                <li>
+                  <a
+                    style="cursor: pointer"
+                    (click)="onEditRecipe()"
+                    class="dropdown-item"
+                    >Edit Recipe</a
+                  >
+                </li>
+                <li>
+                  <a style="cursor: pointer" (click)="onDeleteRecipe()" class="dropdown-item">Delete Recipe</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
         <div class="my-2 scrollbar" style="height: 6vh; overflow-y: auto;">
           <div class="text-center my-2 recipe-description">{{ recipe.description }}</div>
         </div>

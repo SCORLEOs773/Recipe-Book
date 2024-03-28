@@ -21,6 +21,7 @@ import { SpinnerComponent } from './shared/loading-spinner/spinner.component';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { AlertComponent } from './shared/alert/alert.component';
 import { SearchComponent } from './search/search.component';
+import { ViewButtonComponent } from './view-button/view-button.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SearchComponent } from './search/search.component';
     AuthComponent,
     SpinnerComponent,
     AlertComponent,
-    SearchComponent
+    SearchComponent,
+    ViewButtonComponent
   ],
   imports: [
     BrowserModule,
