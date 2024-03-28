@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
@@ -14,6 +14,7 @@ export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
   recipeForm: FormGroup;
+  isSmallScreen: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,11 +23,21 @@ export class RecipeEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.checkScreenSize();
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
       this.initForm();
     });
+  }
+
+  checkScreenSize() {
+    this.isSmallScreen = window.innerWidth <= 768;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = window.innerWidth <= 768;
   }
 
   onSubmit() {
@@ -104,4 +115,5 @@ export class RecipeEditComponent implements OnInit {
   getFormArray(){
     return this.recipeForm.get('ingredients') as FormArray;
   }
+
 }
