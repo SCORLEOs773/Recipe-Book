@@ -3,6 +3,9 @@ import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
+declare const $: any;
+
+
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
@@ -12,6 +15,7 @@ export class RecipeDetailComponent implements OnInit {
 
   recipe: Recipe;
   isSmallScreen: boolean = false;
+  currentRecipe: Recipe;
 
   constructor(
     private recipeService: RecipeService,
