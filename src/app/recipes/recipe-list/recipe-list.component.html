@@ -13,6 +13,6 @@
   <app-recipe-item
     *ngFor="let recipeEl of filteredRecipes(); let i = index"
     [recipe]="recipeEl"
-    [index]="i"
+    [index]="recipeEl.id"
   ></app-recipe-item>
 </div>
