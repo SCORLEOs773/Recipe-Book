@@ -11,9 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   @Input() searchQuery: string;
-  recipes: Recipe[];
+  @Input() recipes: Recipe[];
   subscription: Subscription;
-  filteredRecipes: Recipe[] = [];
+  // filteredRecipes: Recipe[] = [];
   isSmallScreen: boolean = false;
 
   constructor(
@@ -22,7 +22,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {
     this.recipes = this.recipeService.getRecipes();
-    this.filteredRecipes = this.recipes;
+    // this.filteredRecipes = this.recipes;
   }
 
   ngOnInit() {
@@ -50,13 +50,14 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.isSmallScreen = window.innerWidth <= 768;
   }
 
-  filterRecipes() {
-    if (this.searchQuery) {
-      this.filteredRecipes = this.recipes.filter(recipe =>
-        recipe.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
+  filteredRecipes(): Recipe[] {
+    if (this.searchQuery && this.searchQuery.trim()) {
+      return this.recipes.filter(recipe => {
+        return recipe.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || recipe.description.toLowerCase().includes(this.searchQuery.toLowerCase());
+      });
     } else {
-      this.filteredRecipes = this.recipes;
+      return this.recipes;
     }
   }
+
 }
