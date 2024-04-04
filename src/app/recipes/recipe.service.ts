@@ -91,9 +91,11 @@ export class RecipeService {
   }
 
   addRecipe(recipe: Recipe) {
+    recipe.id = String(this.generateNewId());
     this.recipes.push(recipe);
     this.recipeChanged.next(this.recipes.slice());
   }
+
 
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
@@ -104,4 +106,10 @@ export class RecipeService {
     this.recipes.splice(index, 1);
     this.recipeChanged.next(this.recipes.slice());
   }
+
+  private generateNewId(): number {
+    const maxId = this.recipes.reduce((max, recipe) => (+recipe.id > max ? recipe.id : max), 0);
+    return +maxId + 1; // Convert maxId to number using '+'
+  }
+
 }

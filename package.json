@@ -21,6 +21,7 @@
     "@types/bootstrap": "^5.2.10",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
+    "ng": "^0.0.0",
     "rxjs": "^6.6.7",
     "rxjs-compat": "^6.6.7",
     "tslib": "^2.3.0",
@@ -28,7 +29,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.2.2",
-    "@angular/cli": "^17.2.2",
+    "@angular/cli": "^17.3.3",
     "@angular/compiler-cli": "^17.2.0",
     "@types/jasmine": "~5.1.0",
     "@types/jquery": "^3.5.29",
