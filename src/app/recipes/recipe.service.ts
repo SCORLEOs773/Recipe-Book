@@ -80,10 +80,6 @@ export class RecipeService {
     return this.recipes[inedx];
   }
 
-  // searchRecipes(query: string): Observable<Recipe[]> {
-  //   return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/search?query=${query}`);
-  // }
-
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     ingredients.forEach((ingredient) => {
       this.slService.addIngredient(ingredient);
@@ -91,18 +87,52 @@ export class RecipeService {
   }
 
   addRecipe(recipe: Recipe) {
+    recipe.userId = localStorage.getItem('userId');
     recipe.id = String(this.generateNewId());
     this.recipes.push(recipe);
     this.recipeChanged.next(this.recipes.slice());
   }
 
 
+  // updateRecipe(index: number, newRecipe: Recipe, recipe: Recipe) {
+  //   console.log(recipe.userId, localStorage.getItem('userId'));
+  //   if (recipe.userId !== localStorage.getItem('userId')) {
+  //     return;
+  //   }
+  //     this.recipes[index] = newRecipe;
+  //     this.recipeChanged.next(this.recipes.slice());
+  // }
+
+
   updateRecipe(index: number, newRecipe: Recipe) {
+    const userId = localStorage.getItem('userId');
+    const oldRecipe = this.recipes[index];
+
+    if (oldRecipe.userId !== userId) {
+      return; // Prevent updating recipes not owned by the current user
+    }
+
+    newRecipe.userId = userId; // Update userId of the edited recipe
+    newRecipe.id = oldRecipe.id; // Ensure the id of the edited recipe is maintained
+
     this.recipes[index] = newRecipe;
     this.recipeChanged.next(this.recipes.slice());
+
+    // Save updated recipes to the database
+    this.dataStorageService.storeRecipes().subscribe(
+      () => {
+        console.log('Recipes updated successfully!');
+      },
+      (error) => {
+        console.error('Failed to update recipes:', error);
+      }
+    );
   }
 
   deleteRecipe(index: number) {
+    if (this.recipes[index].userId !== localStorage.getItem('userId')) {
+      return;
+    }
     this.recipes.splice(index, 1);
     this.recipeChanged.next(this.recipes.slice());
   }
