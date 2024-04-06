@@ -1,45 +1,102 @@
-<nav class="navbar navbar-expand-lg navbar-light navbar-bg-animation" style="background-image: url('https://img.freepik.com/premium-vector/abstract-background-with-blue-turquoise-waves_632473-9.jpg'); background-size: cover;">
-  <a class="navbar-brand px-5 text-dark fw-bold" [routerLink]="['/']" routerLinkActive="router-link-active" style="font-family: 'Arial', sans-serif; font-size: 1.5rem; color: #333;">
+<nav
+  class="navbar navbar-expand-lg navbar-light navbar-bg-animation"
+  style="
+    background-image: url('https://img.freepik.com/premium-vector/abstract-background-with-blue-turquoise-waves_632473-9.jpg');
+    background-size: cover;
+  "
+>
+  <a
+    class="navbar-brand px-5 text-dark fw-bold"
+    [routerLink]="['/']"
+    routerLinkActive="router-link-active"
+    style="font-family: 'Arial', sans-serif; font-size: 1.5rem; color: #333"
+  >
     The Food Book
   </a>
-  <button class="navbar-toggler"
-   type="button" data-bs-toggle="collapse"
-   data-bs-target="#navbarSupportedContent"
-   aria-controls="navbarSupportedContent"
-   aria-expanded="false"
-   aria-label="Toggle navigation"
-   >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav px-5">
-      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isAuthenticated">
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        *ngIf="isAuthenticated"
+      >
         <a
           class="nav-link"
           routerLink="/recipes"
-          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #fff; text-decoration: none; font-weight: bold;"
-        >Recipes</a>
+          style="
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+          "
+          >Recipes</a
+        >
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isAuthenticated">
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        *ngIf="isAuthenticated"
+      >
         <a
           class="nav-link"
           routerLink="/shopping-list"
-          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #fff; text-decoration: none; font-weight: bold;"
-        >Shopping List</a>
+          style="
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+          "
+          >Shopping List</a
+        >
       </li>
     </ul>
     <ul class="navbar-nav ms-auto px-5 d-flex">
-      <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated">
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        *ngIf="!isAuthenticated"
+      >
         <a
           class="nav-link"
           routerLink="/auth"
-          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #4d9c89; text-decoration: none; font-weight: bold;"
-        >Sign Up/Login</a>
+          style="
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            color: #4d9c89;
+            text-decoration: none;
+            font-weight: bold;
+          "
+          >Sign Up/Login</a
+        >
       </li>
       <li class="nav-item" *ngIf="isAuthenticated">
-        <a class="nav-link" style="cursor: pointer; font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #4d9c89; text-decoration: none; font-weight: bold;" (click)="onLogout()" >
-        Logout
+        <a
+          class="nav-link"
+          style="
+            cursor: pointer;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            color: #4d9c89;
+            text-decoration: none;
+            font-weight: bold;
+          "
+          (click)="onLogout()"
+        >
+          Logout
         </a>
       </li>
       <li class="nav-item dropdown" *ngIf="isAuthenticated">
@@ -49,13 +106,43 @@
           data-bs-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-          style="font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #4d9c89; text-decoration: none; font-weight: bold;"
+          style="
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            color: #4d9c89;
+            text-decoration: none;
+            font-weight: bold;
+          "
         >
-          Manage
+          Save
         </a>
         <div class="dropdown-menu dropdown-menu-end">
-          <a class="dropdown-item" (click)="onSaveData()" style="cursor: pointer; animation: fadeIn 0.5s; font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #4d9c89; font-weight: bold;">Save Data</a>
-          <a class="dropdown-item" (click)="onFetchData()" style="cursor: pointer; animation: fadeIn 0.5s; font-family: 'Arial', sans-serif; font-size: 1.1rem; color: #4d9c89; font-weight: bold;">Fetch Data</a>
+          <a
+            class="dropdown-item"
+            (click)="onSaveData()"
+            style="
+              cursor: pointer;
+              animation: fadeIn 0.5s;
+              font-family: 'Arial', sans-serif;
+              font-size: 1.1rem;
+              color: #4d9c89;
+              font-weight: bold;
+            "
+            >Save Data/Changes</a
+          >
+          <!-- <a
+            class="dropdown-item"
+            (click)="onFetchData()"
+            style="
+              cursor: pointer;
+              animation: fadeIn 0.5s;
+              font-family: 'Arial', sans-serif;
+              font-size: 1.1rem;
+              color: #4d9c89;
+              font-weight: bold;
+            "
+            >Fetch Data</a
+          > -->
         </div>
       </li>
     </ul>

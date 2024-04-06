@@ -1,154 +1,206 @@
 <div class="div for-bigger-screen" *ngIf="!isSmallScreen">
-<div class="row">
-  <div class="col-12 text-center">
-    <img
-      [src]="recipe.imagePath"
-      alt="{{ recipe.name }}"
-      class="img-responsive img-fluid recipe-image mb-4"
-      style="height: 45vh; max-width: 30vw; border: 2px solid crimson; border-radius: 20px;"
-    />
+  <div class="row">
+    <div class="col-12 text-center">
+      <img
+        [src]="recipe.imagePath"
+        alt="{{ recipe.name }}"
+        class="img-responsive img-fluid recipe-image mb-4"
+        style="
+          height: 40vh;
+          max-width: 30vw;
+          border: 2px solid crimson;
+          border-radius: 20px;
+        "
+      />
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-12 my-1">
-    <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
+  <div class="row">
+    <div class="col-12 my-1">
+      <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-12 text-center my-1">
-    <div class="btn-group">
-      <button
-        type="button"
-        class="btn btn-info dropdown-toggle"
-        data-bs-toggle="dropdown"
-      >
-        Manage Recipe <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li>
-          <a
-            class="dropdown-item"
-            (click)="onAddToShoppingList()"
-            style="cursor: pointer"
-            >To Shopping List</a
-          >
-        </li>
-        <li>
-          <a
-            style="cursor: pointer"
-            (click)="onEditRecipe()"
-            class="dropdown-item"
-            >Edit Recipe</a
-          >
-        </li>
-        <li>
-          <a style="cursor: pointer" class="dropdown-item">Delete Recipe(NA unitl User Differentiation)</a>
+  <div class="row">
+    <div class="col-12 text-center my-1">
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-info dropdown-toggle"
+          data-bs-toggle="dropdown"
+        >
+          Manage Recipe <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a
+              class="dropdown-item"
+              (click)="onAddToShoppingList()"
+              style="cursor: pointer"
+              >To Shopping List</a
+            >
+          </li>
+          <li>
+            <a
+              style="cursor: pointer"
+              (click)="onEditRecipe()"
+              class="dropdown-item"
+              >Edit Recipe</a
+            >
+          </li>
+          <li>
+            <a style="cursor: pointer" class="dropdown-item"
+              >Delete Recipe(NA unitl User Differentiation)</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex mx-5 my-3">
+    <div class="col-6 row scrollbar">
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let ingredient of recipe.ingredients"
+        >
+          <span class="ingredient-name">{{
+            ingredient.name.toUpperCase()
+          }}</span>
+          : {{ ingredient.amount }}
         </li>
       </ul>
     </div>
+
+    <div
+      class="col-6 text-center my-2 mx-5 recipe-description scrollbar"
+      style="
+        height: 28vh;
+        width: 20vw;
+        padding: 1vw;
+        vertical-align: middle;
+        word-wrap: break-word;
+        overflow-y: auto;
+        background-color: #f8f9fa;
+        border: 2px solid rgb(20, 127, 220);
+        border-radius: 20px;
+      "
+    >
+      {{ recipe.description }}
+    </div>
   </div>
-</div>
-<div class="row my-2 scrollbar" style="height: 6vh; overflow-y: auto;">
-  <div class="col-12 text-center my-2 recipe-description">{{ recipe.description }}</div>
-</div>
-
-
-<div class="row scrollbar">
-  <div class="col-12">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
-        <span class="ingredient-name">{{ ingredient.name.toUpperCase() }}</span> : {{ ingredient.amount }}
-      </li>
-    </ul>
-  </div>
-</div>
-
 </div>
 
 <!-- //----------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <div class="for-smaller-screen" *ngIf="isSmallScreen">
-
-
-<!-- Modal -->
-<div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="recipeModalLabel">{{ recipe.name }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Recipe details content -->
-        <div class="row">
-          <div class="col-12 text-center">
-            <img
-              [src]="recipe.imagePath"
-              alt="{{ recipe.name }}"
-              class="img-responsive img-fluid recipe-image mb-4"
-              style="height: 45vh; max-width: 80vw; border: 2px solid crimson; border-radius: 20px;"
-            />
-          </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="recipeModal"
+    tabindex="-1"
+    aria-labelledby="recipeModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="recipeModalLabel">{{ recipe.name }}</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
-        <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
-        <!-- Other recipe details -->
-
-
-        <div class="row">
-          <div class="col-12 text-center my-1">
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-info dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                Manage Recipe <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    (click)="onAddToShoppingList()"
-                    style="cursor: pointer"
-                    >To Shopping List</a
-                  >
-                </li>
-                <li>
-                  <a
-                    style="cursor: pointer"
-                    (click)="onEditRecipe()"
-                    class="dropdown-item"
-                    data-bs-toggle="modal" data-bs-target="#recipeEditModal"
-                    >Edit Recipe (In Development)</a
-                  >
-                </li>
-                <li>
-                  <a style="cursor: pointer" class="dropdown-item">Delete Recipe(NA unitl User Differentiation)</a>
-                </li>
-              </ul>
+        <div class="modal-body">
+          <!-- Recipe details content -->
+          <div class="row">
+            <div class="col-12 text-center">
+              <img
+                [src]="recipe.imagePath"
+                alt="{{ recipe.name }}"
+                class="img-responsive img-fluid recipe-image mb-4"
+                style="
+                  height: 45vh;
+                  max-width: 80vw;
+                  border: 2px solid crimson;
+                  border-radius: 20px;
+                "
+              />
             </div>
           </div>
-        </div>
+          <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
+          <!-- Other recipe details -->
 
+          <div class="row">
+            <div class="col-12 text-center my-1">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-info dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                >
+                  Manage Recipe <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      (click)="onAddToShoppingList()"
+                      style="cursor: pointer"
+                      >To Shopping List</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      style="cursor: pointer"
+                      (click)="onEditRecipe()"
+                      class="dropdown-item"
+                      data-bs-toggle="modal"
+                      data-bs-target="#recipeEditModal"
+                      >Edit Recipe (In Development)</a
+                    >
+                  </li>
+                  <li>
+                    <a style="cursor: pointer" class="dropdown-item"
+                      >Delete Recipe(NA unitl User Differentiation)</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <div class="my-2 scrollbar" style="height: 6vh; overflow-y: auto;">
-          <div class="text-center my-2 recipe-description">{{ recipe.description }}</div>
+          <div class="my-2 scrollbar" style="height: 6vh; overflow-y: auto">
+            <div class="text-center my-2 recipe-description">
+              {{ recipe.description }}
+            </div>
+          </div>
+          <div class="scrollbar">
+            <ul class="list-group">
+              <li
+                class="list-group-item"
+                *ngFor="let ingredient of recipe.ingredients"
+              >
+                <span class="ingredient-name">{{
+                  ingredient.name.toUpperCase()
+                }}</span>
+                : {{ ingredient.amount }}
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="scrollbar">
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
-              <span class="ingredient-name">{{ ingredient.name.toUpperCase() }}</span> : {{ ingredient.amount }}
-            </li>
-          </ul>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <!-- Additional buttons if needed -->
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <!-- Additional buttons if needed -->
       </div>
     </div>
   </div>
-</div>
-
-
 </div>

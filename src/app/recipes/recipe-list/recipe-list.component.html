@@ -1,15 +1,32 @@
 <div class="row">
   <div class="col-12">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recipeEditModal" style="margin-right: 4vw;" (click)="onNewRecipe()">New Recipe</button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#recipeEditModal"
+      style="margin-right: 4vw"
+      (click)="onNewRecipe()"
+    >
+      New Recipe
+    </button>
   </div>
 </div>
 <hr />
 
 <div class="mb-1">
-  <input type="text" class="form-control" placeholder="Search Recipes..." [(ngModel)]="searchQuery">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search Recipes..."
+    [(ngModel)]="searchQuery"
+  />
 </div>
 
-<div class="row border-2 scrollbar" style="max-height: 80vh; overflow-y: auto; overflow-x: hidden;">
+<div
+  class="row border-2 scrollbar"
+  style="max-height: 72vh; overflow-y: auto; overflow-x: hidden"
+>
   <app-recipe-item
     *ngFor="let recipeEl of filteredRecipes(); let i = index"
     [recipe]="recipeEl"
