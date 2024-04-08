@@ -7,14 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecipeService {
-
   recipeChanged = new Subject<Recipe[]>();
 
   [x: string]: any;
-
 
   // private recipes: Recipe[] = [
   //   new Recipe(
@@ -65,25 +63,27 @@ export class RecipeService {
 
   private recipes: Recipe[] = [];
 
-  constructor(private slService: ShoppingListService, private http: HttpClient) {}
+  constructor(
+    private slService: ShoppingListService,
+    private http: HttpClient
+  ) {}
 
   getRecipes() {
     return this.recipes.slice();
   }
-  
 
-getRecipeById(id: string): Recipe {
-  return this.recipes.find(recipe => recipe.id === id);
-}
+  getRecipeById(id: string): Recipe {
+    return this.recipes.find((recipe) => recipe.id === id);
+  }
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipeChanged.next(this.recipes.slice());
   }
 
-  getRecipe(inedx: number) {
-    console.log(this.recipes[inedx]);
-    return this.recipes[inedx];
+  getRecipe(index: number) {
+    console.log(this.recipes[index]);
+    return this.recipes[index];
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
@@ -99,7 +99,6 @@ getRecipeById(id: string): Recipe {
     this.recipeChanged.next(this.recipes.slice());
   }
 
-
   // updateRecipe(index: number, newRecipe: Recipe, recipe: Recipe) {
   //   console.log(recipe.userId, localStorage.getItem('userId'));
   //   if (recipe.userId !== localStorage.getItem('userId')) {
@@ -109,17 +108,20 @@ getRecipeById(id: string): Recipe {
   //     this.recipeChanged.next(this.recipes.slice());
   // }
 
-
   updateRecipe(index: number, newRecipe: Recipe) {
     const userId = localStorage.getItem('userId');
     const oldRecipe = this.recipes[index];
 
-    if (oldRecipe.userId !== userId) {
+    if (
+      oldRecipe.userId !== userId &&
+      !JSON.parse(localStorage.getItem('isAdmin'))
+    ) {
       return; // Prevent updating recipes not owned by the current user
     }
 
-    newRecipe.userId = userId; // Update userId of the edited recipe
-    newRecipe.id = oldRecipe.id; // Ensure the id of the edited recipe is maintained
+    // Preserve the original id and userId when updating the recipe
+    newRecipe.id = oldRecipe.id;
+    newRecipe.userId = oldRecipe.userId;
 
     this.recipes[index] = newRecipe;
     this.recipeChanged.next(this.recipes.slice());
@@ -144,17 +146,24 @@ getRecipeById(id: string): Recipe {
   // }
 
   deleteRecipe(id: string) {
-    const index = this.recipes.findIndex(recipe => recipe.id === id);
-    if (index !== -1 && this.recipes[index].userId === localStorage.getItem('userId')) {
+    const index = this.recipes.findIndex((recipe) => recipe.id === id);
+    const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
+
+    if (
+      isAdmin ||
+      (index !== -1 &&
+        this.recipes[index].userId === localStorage.getItem('userId'))
+    ) {
       this.recipes.splice(index, 1);
       this.recipeChanged.next(this.recipes.slice());
     }
   }
 
-
   private generateNewId(): number {
-    const maxId = this.recipes.reduce((max, recipe) => (+recipe.id > max ? recipe.id : max), 0);
+    const maxId = this.recipes.reduce(
+      (max, recipe) => (+recipe.id > max ? recipe.id : max),
+      0
+    );
     return +maxId + 1; // Convert maxId to number using '+'
   }
-
 }
