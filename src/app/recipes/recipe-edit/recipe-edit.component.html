@@ -3,10 +3,19 @@
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-12">
-          <button class="btn btn-success mx-3" type="submit" [disabled]="!recipeForm.valid">Save</button>
-          <button class="btn btn-danger 2 my-4" (click)="onCancelRecipe()">Cancel</button>
+          <button
+            class="btn btn-success mx-3"
+            type="submit"
+            [disabled]="!recipeForm.valid"
+          >
+            Save
+          </button>
+          <button class="btn btn-danger 2 my-4" (click)="onCancelRecipe()">
+            Cancel
+          </button>
         </div>
       </div>
+
       <div class="row">
         <div class="col-12">
           <div class="form-group">
@@ -20,6 +29,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-12">
           <div class="form-group">
@@ -35,53 +45,100 @@
         </div>
       </div>
 
-
-      <div class="d-flex flexBox justify-content-between">
-      <div class="row">
-        <div class="col-12">
-          <img [src]="imagePath.value" class="img-fluid mt-4" alt="" style="height: 29vh; width: 40vh; background-size: cover;">
-        </div>
-      </div>
-      <!-- <div class="row">
-        <div class="col-12">
-          <img src="" class="img-responsive" />
-        </div>
-      </div> -->
       <div class="row">
         <div class="col-12">
           <div class="form-group">
-            <label for="description">Description</label>
-            <textarea
+            <label for="authorName">Author Name</label>
+            <input
               type="text"
-              id="description"
+              id="authorName"
+              formControlName="authorName"
               class="form-control"
-              formControlName="description"
-              rows="11"
-              style="width: 18vw;"
-            ></textarea>
+              #authorName
+            />
           </div>
         </div>
+      </div>
+
+      <div class="d-flex flexBox justify-content-around">
+        <div class="row">
+          <div class="col-12">
+            <img
+              [src]="imagePath.value"
+              class="img-fluid mt-4"
+              alt=""
+              style="height: 21.5vh; width: 20vw; background-size: cover"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                type="text"
+                id="description"
+                class="form-control"
+                formControlName="description"
+                rows="6"
+                style="width: 18vw"
+              ></textarea>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row mt-3">
+
+      <div
+        class="row"
+        style="margin-top: 1px; transform: translateY(-24%); max-height: 1vh"
+      >
         <div class="col-12" formArrayName="ingredients">
-          <div class="scrollbar" style="overflow-y: auto; overflow-x: hidden; max-height: 40vh;">
-            <div class="row my-2" *ngFor="let ingredientCtrl of getFormArray().controls; let i = index" [formGroupName]="i">
+          <div
+            class="scrollbar mt-1"
+            style="overflow-y: auto; overflow-x: hidden; max-height: 16vh"
+          >
+            <div
+              class="row my-2"
+              *ngFor="
+                let ingredientCtrl of getFormArray().controls;
+                let i = index
+              "
+              [formGroupName]="i"
+            >
               <div class="col-8">
-                <input type="text" class="form-control" formControlName="name"/>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                />
               </div>
               <div class="col-2">
-                <input type="number" class="form-control" formControlName="amount"/>
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="amount"
+                />
               </div>
               <div class="col-2">
-                <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">X</button>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="onDeleteIngredient(i)"
+                >
+                  X
+                </button>
               </div>
             </div>
           </div>
-            <hr>
+          <hr />
           <div class="row">
             <div class="col-12">
-              <button class="btn btn-success p-2" type="button" (click)="onAddIngredient()">
+              <button
+                class="btn btn-success p-2"
+                type="button"
+                (click)="onAddIngredient()"
+              >
                 Add Ingredient
               </button>
             </div>
@@ -92,31 +149,50 @@
   </div>
 </div>
 
-
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------ -->
-
 
 <div class="for-smaller-screen" *ngIf="isSmallScreen">
   <!-- Modal -->
-  <div class="modal fade" id="recipeEditModal" tabindex="-1" aria-labelledby="recipeEditModalLabel" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="recipeEditModal"
+    tabindex="-1"
+    aria-labelledby="recipeEditModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="recipeEditModalLabel">Edit Recipe</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <!-- Your form fields for editing recipe details -->
 
-
-
-
           <div class="col-12">
             <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
               <div class="row">
-                <div class="col-12" style="margin-left: 22vw;">
-                  <button class="btn btn-success mx-3" type="submit" data-bs-dismiss="modal" [disabled]="!recipeForm.valid">Save</button>
-                  <button class="btn btn-danger 2 my-4" data-bs-dismiss="modal" (click)="onCancelRecipe()">Cancel</button>
+                <div class="col-12" style="margin-left: 22vw">
+                  <button
+                    class="btn btn-success mx-3"
+                    type="submit"
+                    data-bs-dismiss="modal"
+                    [disabled]="!recipeForm.valid"
+                  >
+                    Save
+                  </button>
+                  <button
+                    class="btn btn-danger 2 my-4"
+                    data-bs-dismiss="modal"
+                    (click)="onCancelRecipe()"
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
               <div class="row">
@@ -147,10 +223,14 @@
                 </div>
               </div>
 
-
               <div class="row">
                 <div class="col-12 text-center">
-                  <img [src]="imagePath.value" class="img-fluid mt-4 mx-auto" alt="" style="height: 20vh; width: 80%; background-size: cover; ">
+                  <img
+                    [src]="imagePath.value"
+                    class="img-fluid mt-4 mx-auto"
+                    alt=""
+                    style="height: 20vh; width: 80%; background-size: cover"
+                  />
                 </div>
               </div>
               <!-- <div class="row">
@@ -168,32 +248,64 @@
                       class="form-control mx-auto"
                       formControlName="description"
                       rows="5"
-                      style="width: 80%;"
+                      style="width: 80%"
                     ></textarea>
                   </div>
                 </div>
-                </div>
-
+              </div>
 
               <div class="row mt-3">
                 <div class="col-12" formArrayName="ingredients">
-                  <div class="scrollbar" style="overflow-y: auto; overflow-x: hidden; max-height: 10vh; height: 10vh;">
-                    <div class="row my-2" *ngFor="let ingredientCtrl of getFormArray().controls; let i = index" [formGroupName]="i">
+                  <div
+                    class="scrollbar"
+                    style="
+                      overflow-y: auto;
+                      overflow-x: hidden;
+                      max-height: 10vh;
+                      height: 10vh;
+                    "
+                  >
+                    <div
+                      class="row my-2"
+                      *ngFor="
+                        let ingredientCtrl of getFormArray().controls;
+                        let i = index
+                      "
+                      [formGroupName]="i"
+                    >
                       <div class="col-8">
-                        <input type="text" class="form-control" formControlName="name"/>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="name"
+                        />
                       </div>
                       <div class="col-2">
-                        <input type="number" class="form-control" formControlName="amount"/>
+                        <input
+                          type="number"
+                          class="form-control"
+                          formControlName="amount"
+                        />
                       </div>
                       <div class="col-2">
-                        <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">X</button>
+                        <button
+                          class="btn btn-danger"
+                          type="button"
+                          (click)="onDeleteIngredient(i)"
+                        >
+                          X
+                        </button>
                       </div>
                     </div>
                   </div>
-                    <hr>
+                  <hr />
                   <div class="row">
                     <div class="col-12">
-                      <button class="btn btn-success p-2" type="button" (click)="onAddIngredient()">
+                      <button
+                        class="btn btn-success p-2"
+                        type="button"
+                        (click)="onAddIngredient()"
+                      >
                         Add Ingredient
                       </button>
                     </div>
@@ -202,11 +314,15 @@
               </div>
             </form>
           </div>
-
-
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
           <!-- Additional buttons if needed -->
         </div>
       </div>
