@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 import { DataStorageService } from './../shared/data-storage.service';
-import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, EventEmitter, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 
 
@@ -11,7 +11,7 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent implements OnInit, OnDestroy{
+export class HeaderComponent implements OnInit, OnDestroy, DoCheck {
   @Output() featureSelected = new EventEmitter<string>();
 
   isAdmin: boolean = false;
@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit, OnDestroy{
       }
     });
   }
+
+  ngDoCheck() {
+    this.isAdmin = JSON.parse(localStorage.getItem('isAdmin') || 'false');
+}
 
   ngOnDestroy() {
     if (this.userSub) {

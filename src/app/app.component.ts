@@ -1,5 +1,5 @@
 import { AuthService } from './auth/auth.service';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-root',
