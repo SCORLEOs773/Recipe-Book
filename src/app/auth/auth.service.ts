@@ -19,6 +19,7 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+  isAdmin: boolean = false;
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
@@ -63,6 +64,14 @@ export class AuthService {
         returnSecureToken: true
       }).pipe(catchError(this.handleError), tap(resData => {
         localStorage.setItem('userId', resData.localId);
+        if (resData.localId === 'h3KNI9sD1PasmzoGuxvAcCP35Oe2' || resData.localId === 'cxwv2qp9zxYzaz8pWQkLI0fpBw12') {
+          this.isAdmin = true;
+          localStorage.setItem('isAdmin', this.isAdmin.toString());
+        }
+        else {
+          this.isAdmin = false;
+          localStorage.setItem('isAdmin', this.isAdmin.toString());
+        }
         this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn, resData.localId); // Passing userId as authUserId
       }));
   }
@@ -107,6 +116,7 @@ export class AuthService {
     this.user.next(null);
     this.router.navigate(['/auth']);
     localStorage.removeItem('user');
+    localStorage.removeItem('isAdmin');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }

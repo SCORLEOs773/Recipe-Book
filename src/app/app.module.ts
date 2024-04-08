@@ -39,7 +39,7 @@ import { ViewButtonComponent } from './view-button/view-button.component';
     SpinnerComponent,
     AlertComponent,
     SearchComponent,
-    ViewButtonComponent
+    ViewButtonComponent,
   ],
   imports: [
     BrowserModule,
