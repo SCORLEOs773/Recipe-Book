@@ -50,6 +50,7 @@ export class RecipeEditComponent implements OnInit {
     {
       this.recipeService.addRecipe(this.recipeForm.value);
     }
+
     this.onCancelRecipe();
   }
 

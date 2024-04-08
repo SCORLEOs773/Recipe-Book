@@ -13,6 +13,7 @@ declare const $: any;
 })
 export class RecipeDetailComponent implements OnInit {
 
+  id: string;
   recipe: Recipe;
   isSmallScreen: boolean = false;
   currentRecipe: Recipe;
@@ -28,16 +29,23 @@ export class RecipeDetailComponent implements OnInit {
     this.isSmallScreen = window.innerWidth <= 768;
   }
 
+  // ngOnInit() {
+  //   this.checkScreenSize();
+  //   this.route.params.subscribe((params: Params) => {
+  //     this.id = params['id'];
+  //     this.recipe = this.recipeService.getRecipeById(this.id);
+  //   });
+  // }
+
   ngOnInit() {
     this.checkScreenSize();
-    this.route.params.subscribe(
-      (params: Params) => (
-        this.id = +params['id'],
-        this.recipe = this.recipeService.getRecipe(+params['id']))
-    );
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.recipe = this.recipeService.getRecipeById(this.id);
+    });
   }
 
-  id: number;
+
   onAddToShoppingList() {
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
   }
@@ -47,7 +55,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    this.recipeService.deleteRecipe(this.id);
+    this.recipeService.deleteRecipe(this.id); // Delete recipe using ID
     this.router.navigate(['delete'], { relativeTo: this.route });
   }
 

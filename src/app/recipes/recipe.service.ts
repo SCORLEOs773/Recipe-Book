@@ -70,6 +70,11 @@ export class RecipeService {
   getRecipes() {
     return this.recipes.slice();
   }
+  
+
+getRecipeById(id: string): Recipe {
+  return this.recipes.find(recipe => recipe.id === id);
+}
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
@@ -77,6 +82,7 @@ export class RecipeService {
   }
 
   getRecipe(inedx: number) {
+    console.log(this.recipes[inedx]);
     return this.recipes[inedx];
   }
 
@@ -129,13 +135,22 @@ export class RecipeService {
     );
   }
 
-  deleteRecipe(index: number) {
-    if (this.recipes[index].userId !== localStorage.getItem('userId')) {
-      return;
+  // deleteRecipe(index: number) {
+  //   if (this.recipes[index].userId !== localStorage.getItem('userId')) {
+  //     return;
+  //   }
+  //   this.recipes.splice(index, 1);
+  //   this.recipeChanged.next(this.recipes.slice());
+  // }
+
+  deleteRecipe(id: string) {
+    const index = this.recipes.findIndex(recipe => recipe.id === id);
+    if (index !== -1 && this.recipes[index].userId === localStorage.getItem('userId')) {
+      this.recipes.splice(index, 1);
+      this.recipeChanged.next(this.recipes.slice());
     }
-    this.recipes.splice(index, 1);
-    this.recipeChanged.next(this.recipes.slice());
   }
+
 
   private generateNewId(): number {
     const maxId = this.recipes.reduce((max, recipe) => (+recipe.id > max ? recipe.id : max), 0);
