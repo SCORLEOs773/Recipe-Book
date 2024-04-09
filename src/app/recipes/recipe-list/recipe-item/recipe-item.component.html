@@ -2,8 +2,10 @@
   class="list-group-item clearfix border-on-hover"
   routerLinkActive="active"
   [routerLink]="[index]"
-  style="cursor: pointer;"
-  type="button" data-bs-toggle="modal" data-bs-target="#recipeModal"
+  style="cursor: pointer"
+  type="button"
+  data-bs-toggle="modal"
+  data-bs-target="#recipeModal"
 >
   <div
     class="card border-2 p-2 m-1 d-flex"
@@ -19,20 +21,50 @@
     "
   >
     <div class="row">
-      <div class="col-md-8"> <!-- Adjust column width for smaller screens -->
-        <h4 class="list-group-item-heading text-center p-3 text-primary" style="font-family: 'Arial Black', Gadget, sans-serif;">
-          {{ recipe.name}}
+      <div class="col-md-8">
+        <!-- Adjust column width for smaller screens -->
+        <h4
+          class="list-group-item-heading text-center p-3 text-primary"
+          style="font-family: 'Arial Black', Gadget, sans-serif"
+        >
+          {{ recipe.name }}
+          <h6
+            class="text-center mt-1"
+            style="
+              color: rgb(13, 149, 149);
+              font-family: 'Arial Black', Gadget, sans-serif;
+              border: 1.6px solid rgb(255, 149, 0);
+              border-radius: 5px;
+              padding: 5px;
+              width: fit-content;
+              margin: auto;
+            "
+          >
+            Recipe by - {{ recipe.authorName }}
+          </h6>
         </h4>
-        <p class="list-group-item-text text-center" style="width: 100%; color:rgb(57, 57, 223); font-size: large;">
+
+        <p
+          class="list-group-item-text text-center"
+          style="width: 100%; color: rgb(57, 57, 223); font-size: large"
+        >
           {{ recipe.description }}
         </p>
       </div>
-      <div class="col-md-4 d-xl-block my-auto" style="display: flex; align-items: center; justify-content: center;">
+      <div
+        class="col-md-4 d-xl-block my-auto"
+        style="display: flex; align-items: center; justify-content: center"
+      >
         <img
           [src]="recipe.imagePath"
           alt="{{ recipe.name }}"
           class="img-responsive img-fluid recipeImage"
-          style="height: auto; max-width: 100%; border-radius: 5px; border: 2px solid yellow;"
+          style="
+            height: auto;
+            max-width: 100%;
+            border-radius: 5px;
+            border: 2px solid yellow;
+          "
         />
       </div>
     </div>
