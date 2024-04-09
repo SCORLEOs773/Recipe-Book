@@ -48,7 +48,12 @@
           class="list-group-item-text text-center"
           style="width: 100%; color: rgb(57, 57, 223); font-size: large"
         >
-          {{ recipe.description }}
+          <!-- {{
+            recipe.description.length > 25
+              ? (recipe.description | slice : 0 : 25) + "..."
+              : recipe.description
+          }} -->
+          {{ getTruncatedDescription(recipe.description, 5) }}
         </p>
       </div>
       <div
@@ -60,8 +65,8 @@
           alt="{{ recipe.name }}"
           class="img-responsive img-fluid recipeImage"
           style="
-            height: auto;
-            max-width: 100%;
+            height: 140px;
+            width: 150px;
             border-radius: 5px;
             border: 2px solid yellow;
           "

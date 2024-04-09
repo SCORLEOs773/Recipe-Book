@@ -1,10 +1,10 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { catchError, tap } from "rxjs/operators";
-import { BehaviorSubject, throwError } from "rxjs";
-import { User } from "./user.model";
-import { Router } from "@angular/router";
-import { enviorment } from "../../enviorments/enviorment";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, throwError } from 'rxjs';
+import { User } from './user.model';
+import { Router } from '@angular/router';
+import { enviorment } from '../../enviorments/enviorment';
 
 export interface AuthResponseData {
   kind: string;
@@ -18,23 +18,35 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-
   isAdmin: boolean = false;
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + enviorment.firebaseAPIKey,
-      {
-        email: email,
-        password: password,
-        returnSecureToken: true
-      }).pipe(
-        catchError(this.handleError), tap(resData => {
-          this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn, resData.localId); // Passing userId as authUserId
-        }));
+    return this.http
+      .post<AuthResponseData>(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+          enviorment.firebaseAPIKey,
+        {
+          email: email,
+          password: password,
+          returnSecureToken: true,
+        }
+      )
+      .pipe(
+        catchError(this.handleError),
+        tap((resData) => {
+          this.handleAuthentication(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn,
+            resData.localId
+          ); // Passing userId as authUserId
+        })
+      );
   }
 
   autoLogin() {
@@ -48,40 +60,71 @@ export class AuthService {
     if (!user) {
       return;
     }
-    const loadedUser = new User(user.email, user.id, user._token, new Date(user._tokenExpirationDate));
+    const loadedUser = new User(
+      user.email,
+      user.id,
+      user._token,
+      new Date(user._tokenExpirationDate)
+    );
     if (loadedUser.token) {
       this.user.next(loadedUser);
-      const expirationDuration = new Date(user._tokenExpirationDate).getTime() - new Date().getTime();
+      const expirationDuration =
+        new Date(user._tokenExpirationDate).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
     }
   }
 
   login(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + enviorment.firebaseAPIKey,
-      {
-        email: email,
-        password: password,
-        returnSecureToken: true
-      }).pipe(catchError(this.handleError), tap(resData => {
-        localStorage.setItem('userId', resData.localId);
-        if (resData.localId === 'h3KNI9sD1PasmzoGuxvAcCP35Oe2' || resData.localId === 'cxwv2qp9zxYzaz8pWQkLI0fpBw12') {
-          this.isAdmin = true;
-          localStorage.setItem('isAdmin', this.isAdmin.toString());
+    return this.http
+      .post<AuthResponseData>(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+          enviorment.firebaseAPIKey,
+        {
+          email: email,
+          password: password,
+          returnSecureToken: true,
         }
-        else {
-          this.isAdmin = false;
-          localStorage.setItem('isAdmin', this.isAdmin.toString());
-        }
-        this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn, resData.localId); // Passing userId as authUserId
-      }));
+      )
+      .pipe(
+        catchError(this.handleError),
+        tap((resData) => {
+          localStorage.setItem('userId', resData.localId);
+          if (
+            resData.localId === 'h3KNI9sD1PasmzoGuxvAcCP35Oe2' ||
+            resData.localId === 'cxwv2qp9zxYzaz8pWQkLI0fpBw12'
+          ) {
+            this.isAdmin = true;
+            localStorage.setItem('isAdmin', this.isAdmin.toString());
+          } else {
+            this.isAdmin = false;
+            localStorage.setItem('isAdmin', this.isAdmin.toString());
+          }
+          this.handleAuthentication(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn,
+            resData.localId
+          ); // Passing userId as authUserId
+        })
+      );
   }
 
-  private handleAuthentication(email: string, userId: string, token: string, expiresIn: number, authUserId: string) {
+  private handleAuthentication(
+    email: string,
+    userId: string,
+    token: string,
+    expiresIn: number,
+    authUserId: string
+  ) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
-    localStorage.setItem('user', JSON.stringify({ ...user, userId: authUserId }));
+    localStorage.setItem(
+      'user',
+      JSON.stringify({ ...user, userId: authUserId })
+    );
   }
 
   private handleError(errorRes: HttpErrorResponse) {
@@ -122,5 +165,4 @@ export class AuthService {
     }
     this.tokenExpirationTimer = null;
   }
-
 }
