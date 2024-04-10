@@ -15,6 +15,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   // filteredRecipes: Recipe[] = [];
   isSmallScreen: boolean = false;
+  showUserRecipesOnly: boolean = false;
 
   constructor(
     private recipeService: RecipeService,
@@ -41,6 +42,10 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
+  onMyRecipes() {
+    this.showUserRecipesOnly = !this.showUserRecipesOnly; // Toggle the mode
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.isSmallScreen = window.innerWidth <= 768;
@@ -50,14 +55,33 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.isSmallScreen = window.innerWidth <= 768;
   }
 
+  // filteredRecipes(): Recipe[] {
+  //   if (this.searchQuery && this.searchQuery.trim()) {
+  //     return this.recipes.filter(recipe => {
+  //       return recipe.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || recipe.description.toLowerCase().includes(this.searchQuery.toLowerCase());
+  //     });
+  //   } else {
+  //     return this.recipes;
+  //   }
+  // }
+
   filteredRecipes(): Recipe[] {
     if (this.searchQuery && this.searchQuery.trim()) {
       return this.recipes.filter(recipe => {
         return recipe.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || recipe.description.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
     } else {
-      return this.recipes;
+      if (this.showUserRecipesOnly) {
+        const userId = localStorage.getItem('userId'); // Get the currently logged-in user's ID
+        return this.recipes.filter(recipe => recipe.userId === userId); // Filter recipes based on userId
+      } else {
+        return this.recipes;
+      }
     }
+  }
+
+  getMyRecipesButtonText(): string {
+    return this.showUserRecipesOnly ? 'All Recipes' : 'My Recipes';
   }
 
 }
