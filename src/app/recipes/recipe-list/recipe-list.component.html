@@ -30,9 +30,17 @@
   class="row border-2 scrollbar"
   style="max-height: 72vh; overflow-y: auto; overflow-x: hidden"
 >
-  <app-recipe-item
-    *ngFor="let recipeEl of filteredRecipes(); let i = index"
-    [recipe]="recipeEl"
-    [index]="recipeEl.id"
-  ></app-recipe-item>
+  <ng-container *ngIf="filteredRecipes().length > 0; else noRecipes">
+    <app-recipe-item
+      *ngFor="let recipeEl of filteredRecipes(); let i = index"
+      [recipe]="recipeEl"
+      [index]="recipeEl.id"
+    ></app-recipe-item>
+  </ng-container>
 </div>
+
+<ng-template #noRecipes>
+  <div class="text-center mt-3">
+    <p class="text-muted fw-medium mt-5" style="font-size:xx-large;">You have not created any recipes. Create your first now!</p>
+  </div>
+</ng-template>
