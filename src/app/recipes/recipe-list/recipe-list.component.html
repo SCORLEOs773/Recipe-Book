@@ -17,14 +17,18 @@
 </div>
 <hr />
 
-<div class="mb-1">
+<div class="mb-3 d-flex align-items-center">
   <input
     type="text"
-    class="form-control"
-    placeholder="Search Recipes..."
+    class="form-control me-2"
+    [placeholder]="isSearchingByRecipeName ? 'Search Recipes...' : 'Search By Author'"
     [(ngModel)]="searchQuery"
   />
+  <button class="btn btn-info" (click)="toggleSearchMode()">
+    {{ isSearchingByRecipeName ? 'Search By Author' : 'Search By Recipe' }}
+  </button>
 </div>
+
 
 <div
   class="row border-2 scrollbar"
