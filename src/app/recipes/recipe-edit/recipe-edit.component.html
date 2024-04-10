@@ -22,6 +22,7 @@
             <label for="name">Name</label>
             <input
               type="text"
+              placeholder="Recipe Name"
               id="name"
               formControlName="name"
               class="form-control"
@@ -37,6 +38,7 @@
             <input
               type="text"
               id="imagePath"
+              placeholder="Image URL"
               formControlName="imagePath"
               class="form-control"
               #imagePath
@@ -52,6 +54,7 @@
             <input
               type="text"
               id="authorName"
+              placeholder="Author Name"
               formControlName="authorName"
               class="form-control"
               #authorName
@@ -80,6 +83,7 @@
                 type="text"
                 id="description"
                 class="form-control"
+                placeholder="Description (Explain steps to make the recipe)"
                 formControlName="description"
                 rows="6"
                 style="width: 18vw"
@@ -110,13 +114,15 @@
                 <input
                   type="text"
                   class="form-control"
+                  placeholder="Ingredient Name"
                   formControlName="name"
                 />
               </div>
               <div class="col-2">
                 <input
-                  type="number"
+                  type="text"
                   class="form-control"
+                  placeholder="Quantity"
                   formControlName="amount"
                 />
               </div>

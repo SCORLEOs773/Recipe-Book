@@ -81,7 +81,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   getMyRecipesButtonText(): string {
-    return this.showUserRecipesOnly ? 'All Recipes' : 'My Recipes';
+    return this.showUserRecipesOnly ? 'View All Recipes' : 'View My Recipes';
   }
 
 }
