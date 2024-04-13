@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { DataStorageService } from '../../../shared/data-storage.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -9,6 +10,9 @@ import { Recipe } from '../../recipe.model';
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
   @Input() index: number;
+  authorName: string = '';
+
+  constructor(private dataStorageService: DataStorageService) {}
 
   getTruncatedDescription(description: string, wordCount: number): string {
     const words = description.split(' ');
@@ -19,5 +23,16 @@ export class RecipeItemComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const userId = this.recipe.userId;
+    this.dataStorageService
+      .getAuthorName(userId)
+      .then((username: string) => {
+        this.authorName = username;
+      })
+      .catch((error) => {
+        console.error('Error fetching author name:', error);
+        this.authorName = 'Anonymous'; // Set default username if error occurs
+      });
+  }
 }

@@ -17,8 +17,11 @@
   <div class="row">
     <div class="col-12 my-1">
       <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
-      <h6 class="author-name text-center">
+      <!-- <h6 class="author-name text-center">
         Recipe Author - {{ recipe.authorName || "Anonymous" }}
+      </h6> -->
+      <h6 class="author-name text-center">
+        Recipe Author - {{ authorName || "Anonymous" }}
       </h6>
 
       <div class="text-center">

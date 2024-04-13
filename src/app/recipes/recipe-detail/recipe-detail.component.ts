@@ -2,8 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import { DataStorageService } from '../../shared/data-storage.service';
 
 declare const $: any;
 
@@ -18,11 +17,13 @@ export class RecipeDetailComponent implements OnInit {
   isSmallScreen: boolean = false;
   currentRecipe: Recipe;
   isLiked: boolean = false;
+  authorName: string = '';
 
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dataStorageService: DataStorageService
   ) {}
 
   @HostListener('window:resize', ['$event'])
@@ -36,9 +37,22 @@ export class RecipeDetailComponent implements OnInit {
       this.id = params['id'];
       this.recipe = this.recipeService.getRecipeById(this.id);
 
-      const userId = localStorage.getItem('userId');
-      if (userId) {
-        this.isLiked = this.recipeService.isRecipeLiked(this.id, userId);
+      if (this.recipe) {
+        const userId = this.recipe.userId;
+        if (userId) {
+          this.isLiked = this.recipeService.isRecipeLiked(this.id, userId);
+
+          // Fetch author name based on userId
+          this.dataStorageService
+            .getAuthorName(userId)
+            .then((username: string) => {
+              this.authorName = username;
+            })
+            .catch((error) => {
+              console.error('Error fetching author name:', error);
+              this.authorName = 'Anonymous'; // Set default username if error occurs
+            });
+        }
       }
     });
   }
