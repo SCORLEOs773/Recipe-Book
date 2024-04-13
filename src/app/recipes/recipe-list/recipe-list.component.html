@@ -12,7 +12,7 @@
     </button>
     <button
       class="my-recipes btn btn-info"
-      style="color: darkslategrey"
+      style="color: darkslategrey; font-weight: 600"
       (click)="onMyRecipes()"
     >
       {{ getMyRecipesButtonText() }}
@@ -20,17 +20,18 @@
   </div>
 </div>
 <hr />
-
-<div class="mb-3 d-flex align-items-center">
+<div class="d-flex align-items-center">
   <input
     type="text"
-    class="form-control me-2"
+    class="form-control mx-2 mb-2"
     [placeholder]="
-      isSearchingByRecipeName ? 'Search Recipes...' : 'Search By Author'
+      isSearchingByRecipeName
+        ? 'Search Recipes...'
+        : 'Search Recipes by Author Name...'
     "
     [(ngModel)]="searchQuery"
   />
-  <button class="btn btn-info" (click)="toggleSearchMode()">
+  <button class="btn btn-info" (click)="toggleSearchMode()" style="width: 15vw">
     {{ isSearchingByRecipeName ? "Search By Author" : "Search By Recipe" }}
   </button>
 </div>

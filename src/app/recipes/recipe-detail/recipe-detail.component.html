@@ -4,7 +4,7 @@
       <img
         [src]="recipe.imagePath"
         alt="{{ recipe.name }}"
-        class="img-responsive img-fluid recipe-image mb-4"
+        class="img-responsive img-fluid recipe-image mb-1"
         style="
           height: 40vh;
           max-width: 30vw;
@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 my-1">
+    <div class="col-12">
       <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
       <!-- <h6 class="author-name text-center">
         Recipe Author - {{ recipe.authorName || "Anonymous" }}
@@ -138,16 +138,20 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="recipeModalLabel">{{ recipe.name }}</h5>
-          <h6 class="author-name text-center">
-            Recipe Author - {{ recipe.authorName || "Anonymous" }}
-          </h6>
-          <button
+          <div class="names d-flex flex-column text-center">
+            <h5 class="modal-title" id="recipeModalLabel">
+              {{ recipe.name }}
+            </h5>
+            <h6 class="author-name text-center">
+              Recipe Author - {{ authorName || "Anonymous" }}
+            </h6>
+          </div>
+          <!-- <button
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-          ></button>
+          ></button> -->
         </div>
         <div class="modal-body">
           <!-- Recipe details content -->
@@ -168,6 +172,31 @@
           </div>
           <h1 class="text-center recipe-name">{{ recipe.name }}</h1>
           <!-- Other recipe details -->
+
+          <div class="text-center">
+            <img
+              (click)="onLike()"
+              *ngIf="!isLiked"
+              width="30"
+              height="30"
+              src="https://img.icons8.com/ios/50/like--v1.png"
+              alt="like--v1"
+              style="cursor: pointer"
+            />
+
+            <img
+              (click)="onLike()"
+              *ngIf="isLiked"
+              width="30"
+              height="30"
+              src="https://img.icons8.com/color/48/000000/like--v1.png"
+              alt="like--v1"
+            />
+
+            <span class="like-count fw-bold mx-2" style="color: red">{{
+              recipe.likeCount
+            }}</span>
+          </div>
 
           <div class="row">
             <div class="col-12 text-center my-1">
@@ -211,7 +240,10 @@
             </div>
           </div>
 
-          <div class="my-2 scrollbar" style="height: 6vh; overflow-y: auto">
+          <div
+            class="my-2 scrollbar"
+            style="height: fit-content; overflow-y: auto"
+          >
             <div class="text-center my-2 recipe-description">
               {{ recipe.description }}
             </div>
@@ -230,7 +262,7 @@
             </ul>
           </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" style="margin-right: 27vw">
           <button
             type="button"
             class="btn btn-secondary"

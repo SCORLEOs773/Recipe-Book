@@ -27,6 +27,7 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { SearchComponent } from './search/search.component';
 import { ViewButtonComponent } from './view-button/view-button.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ProfileComponent } from './profile/profile.component';
   providers: [
     ShoppingListService,
     RecipeService,
+    CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
