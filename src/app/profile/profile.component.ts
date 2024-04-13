@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { DataStorageService } from '../shared/data-storage.service';
 import { Recipe } from '../recipes/recipe.model';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private dataStorageService: DataStorageService
+    private dataStorageService: DataStorageService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -41,11 +43,22 @@ export class ProfileComponent implements OnInit {
           this.userRecipes = recipes.filter(
             (recipe) => recipe.userId === userId
           );
+          // Store recipe names in cookies
+          this.storeRecipeNamesInCookies();
         },
         (error) => {
           console.error('Error fetching recipes:', error);
         }
       );
+    }
+  }
+
+  storeRecipeNamesInCookies() {
+    // Check if userRecipes is defined and not empty
+    if (this.userRecipes && this.userRecipes.length > 0) {
+      this.userRecipes.forEach((recipe) => {
+        this.cookieService.set('recipe_' + recipe.id, recipe.name);
+      });
     }
   }
 }
