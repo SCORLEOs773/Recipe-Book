@@ -26,6 +26,7 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { AlertComponent } from './shared/alert/alert.component';
 import { SearchComponent } from './search/search.component';
 import { ViewButtonComponent } from './view-button/view-button.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ViewButtonComponent } from './view-button/view-button.component';
     AlertComponent,
     SearchComponent,
     ViewButtonComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

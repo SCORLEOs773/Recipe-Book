@@ -1,0 +1,62 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">User Profile</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <div class="avatar">{{ username.charAt(0) }}</div>
+            <h5 class="card-title ms-3">Username: {{ username }}</h5>
+          </div>
+          <p class="card-text">Email: {{ email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="row mt-4"
+    *ngIf="userRecipes && userRecipes.length > 0; else noRecipes"
+  >
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            Recipes Created by
+            <span style="color: darkslateblue">{{ username }}</span>
+          </h5>
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between"
+              *ngFor="let recipe of userRecipes"
+              [routerLink]="['/recipes', recipe.id]"
+              style="cursor: pointer"
+            >
+              <span>{{ recipe.name }}</span>
+              <span
+                class="badge p-2"
+                style="
+                  background-color: deeppink;
+                  text-align: center;
+                  vertical-align: middle;
+                "
+              >
+                Likes - {{ recipe.likeCount }}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noRecipes>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="alert alert-info" role="alert">
+          You have not created any recipes. Create your first now!
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
