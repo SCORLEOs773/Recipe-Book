@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RecipeService {
+
+  private likedRecipes: Map<string, Set<string>> = new Map();
   recipeChanged = new Subject<Recipe[]>();
 
   [x: string]: any;
@@ -67,6 +69,28 @@ export class RecipeService {
     private slService: ShoppingListService,
     private http: HttpClient
   ) {}
+
+  likeRecipe(recipeId: string, userId: string): boolean {
+    if (!this.likedRecipes.has(userId)) {
+      this.likedRecipes.set(userId, new Set());
+    }
+
+    const userLikedRecipes = this.likedRecipes.get(userId);
+
+    if (userLikedRecipes.has(recipeId)) {
+      // User has already liked the recipe
+      return false;
+    } else {
+      // Increment the like count and mark recipe as liked by the user
+      const recipeIndex = this.recipes.findIndex((recipe) => recipe.id === recipeId);
+      if (recipeIndex !== -1) {
+        this.recipes[recipeIndex].likeCount++;
+        userLikedRecipes.add(recipeId);
+        return true;
+      }
+    }
+    return false;
+  }
 
   getRecipes() {
     return this.recipes.slice();

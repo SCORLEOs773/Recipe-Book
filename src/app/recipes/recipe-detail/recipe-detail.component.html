@@ -20,6 +20,12 @@
       <h6 class="author-name text-center">
         Recipe Author - {{ recipe.authorName || "Anonymous" }}
       </h6>
+      <h5 class="like-count text-center">
+        Likes - {{ recipe.likeCount }}
+        <button mat-icon-button (click)="onLike()">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+      </h5>
     </div>
   </div>
   <div class="row">
