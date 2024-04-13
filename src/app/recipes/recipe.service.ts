@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RecipeService {
-
   private likedRecipes: Map<string, Set<string>> = new Map();
   recipeChanged = new Subject<Recipe[]>();
 
@@ -82,14 +81,42 @@ export class RecipeService {
       return false;
     } else {
       // Increment the like count and mark recipe as liked by the user
-      const recipeIndex = this.recipes.findIndex((recipe) => recipe.id === recipeId);
+      const recipeIndex = this.recipes.findIndex(
+        (recipe) => recipe.id === recipeId
+      );
       if (recipeIndex !== -1) {
-        this.recipes[recipeIndex].likeCount++;
+        // Increment the like count by one
+        this.recipes[recipeIndex];
         userLikedRecipes.add(recipeId);
         return true;
       }
     }
     return false;
+  }
+
+  unlikeRecipe(recipeId: string, userId: string): boolean {
+    if (this.likedRecipes.has(userId)) {
+      const userLikedRecipes = this.likedRecipes.get(userId);
+      if (userLikedRecipes.has(recipeId)) {
+        // Decrement the like count and mark recipe as unliked by the user
+        const recipeIndex = this.recipes.findIndex(
+          (recipe) => recipe.id === recipeId
+        );
+        if (recipeIndex !== -1) {
+          this.recipes[recipeIndex];
+          userLikedRecipes.delete(recipeId);
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  isRecipeLiked(recipeId: string, userId: string): boolean {
+    return (
+      this.likedRecipes.has(userId) &&
+      this.likedRecipes.get(userId).has(recipeId)
+    );
   }
 
   getRecipes() {
@@ -117,10 +144,21 @@ export class RecipeService {
   }
 
   addRecipe(recipe: Recipe) {
+    recipe.likeCount = 0;
+
     recipe.userId = localStorage.getItem('userId');
     recipe.id = String(this.generateNewId());
     this.recipes.push(recipe);
     this.recipeChanged.next(this.recipes.slice());
+
+    this.dataStorageService.storeRecipes().subscribe(
+      () => {
+        console.log('Recipe added successfully!');
+      },
+      (error) => {
+        console.error('Failed to add recipe:', error);
+      }
+    );
   }
 
   // updateRecipe(index: number, newRecipe: Recipe, recipe: Recipe) {

@@ -20,12 +20,31 @@
       <h6 class="author-name text-center">
         Recipe Author - {{ recipe.authorName || "Anonymous" }}
       </h6>
-      <h5 class="like-count text-center">
-        Likes - {{ recipe.likeCount }}
-        <button mat-icon-button (click)="onLike()">
-          <mat-icon>thumb_up</mat-icon>
-        </button>
-      </h5>
+
+      <div class="text-center">
+        <img
+          (click)="onLike()"
+          *ngIf="!isLiked"
+          width="30"
+          height="30"
+          src="https://img.icons8.com/ios/50/like--v1.png"
+          alt="like--v1"
+          style="cursor: pointer"
+        />
+
+        <img
+          (click)="onLike()"
+          *ngIf="isLiked"
+          width="30"
+          height="30"
+          src="https://img.icons8.com/color/48/000000/like--v1.png"
+          alt="like--v1"
+        />
+
+        <span class="like-count fw-bold mx-2" style="color: red">{{
+          recipe.likeCount
+        }}</span>
+      </div>
     </div>
   </div>
   <div class="row">
