@@ -42,6 +42,14 @@ User recipes and shopping lists are securely stored using Firebase Realtime Data
 
 The application is designed with a responsive layout, ensuring optimal viewing and interaction across various devices and screen sizes. It includes different views and layouts specifically tailored for smaller screens and mobile devices. The responsive design ensures a seamless user experience regardless of the device being used.
 
+### New Features (Version Update)
+
+- **Like Button Integration:** Users can now like recipes, and the like count is displayed alongside each recipe. This feature enhances user engagement and interaction with recipes.
+- **Profile Section Enhancement:** The profile section now includes a list of all recipes created by a specific user, along with the author name displayed for each recipe. Users can click on a recipe to view its details directly from the profile section.
+- **My Recipes Button:** Users can access their recipes directly from the recipe page by clicking on the "My Recipes" button. This provides quick and easy access to the user's recipes.
+- **Search Functionality:** Users can search for recipes by both author name and recipe name. This enhances the usability of the application by providing multiple search options to users.
+- **Renewed Design:** The application design has been updated to improve user experience and visual appeal. The new design offers a more modern and intuitive interface for users.
+
 ## Installation
 
 To run The Food Book locally on your machine, follow these steps:
@@ -50,7 +58,6 @@ To run The Food Book locally on your machine, follow these steps:
 
 ```bash
 git clone https://github.com/your-username/your-repository.git
-
 ```
 
 ## Usage
