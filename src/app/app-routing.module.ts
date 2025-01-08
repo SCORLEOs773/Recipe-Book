@@ -10,6 +10,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthGaurd } from './auth/auth.gaurd';
 import { ProfileComponent } from './profile/profile.component';
 import { RandomRecipeComponent } from './random-recipe/random-recipe.component';
+import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'cusine-atlas', component: RandomRecipeComponent },
+  { path: 'search', component: RecipeSearchComponent },
 ];
 
 @NgModule({

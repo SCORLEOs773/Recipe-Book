@@ -1,0 +1,46 @@
+<!-- Recipe Search Bar -->
+<div class="search-bar-container">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    placeholder="Search for a recipe..."
+    class="search-input"
+  />
+  <button (click)="searchRecipe()" class="search-button">Search</button>
+  <p *ngIf="noRecipeFound" class="no-recipe-message">
+    No recipe found for "{{ searchQuery }}"
+  </p>
+</div>
+
+<!-- Filter Recipes by Area and Category -->
+<div>
+  <select [(ngModel)]="selectedArea" (change)="filterRecipes()">
+    <option *ngFor="let area of areas" [value]="area">{{ area }}</option>
+  </select>
+
+  <select [(ngModel)]="selectedCategory" (change)="filterRecipes()">
+    <option *ngFor="let category of categories" [value]="category">
+      {{ category }}
+    </option>
+  </select>
+</div>
+
+<!-- Display Recipes List with Scroll -->
+<div class="recipe-list-container">
+  <div *ngIf="recipes.length > 0">
+    <div *ngFor="let recipe of recipes" class="recipe-item">
+      <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" />
+      <h3>{{ recipe.strMeal }}</h3>
+      <p>{{ recipe.strArea }}</p>
+      <button (click)="viewRecipe(recipe)">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Initial State Message -->
+  <p *ngIf="!recipes.length && !noRecipeFound">
+    Start searching for a recipe...
+  </p>
+
+  <!-- No Recipes Found Message -->
+  <p *ngIf="noRecipeFound">No recipes found</p>
+</div>

@@ -7,20 +7,27 @@ import { Recipe } from './random-recipe.model';
   providedIn: 'root',
 })
 export class MealService {
-  recipe!: any;
   private baseUrl = 'https://www.themealdb.com/api/json/v1/1';
 
   constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {}
 
   getRandomRecipe(): Observable<{ meals: Recipe[] }> {
     return this.http.get<{ meals: Recipe[] }>(`${this.baseUrl}/random.php`);
   }
 
-  getIngredients(): string[] {
-    return Object.keys(this.recipe)
-      .filter((key) => key.startsWith('strIngredient') && this.recipe[key])
-      .map((key) => this.recipe[key]);
+  getIngredients(recipe: Recipe): string[] {
+    return Object.keys(recipe)
+      .filter((key) => key.startsWith('strIngredient') && recipe[key])
+      .map((key) => recipe[key]);
+  }
+
+  getRecipeByName(name: string): Observable<Recipe> {
+    return this.http.get<Recipe>(`${this.baseUrl}/search.php?s=${name}`);
+  }
+
+  getFilteredRecipes(category: string, area: string): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(
+      `${this.baseUrl}/filter.php?c=${category}&a=${area}`
+    );
   }
 }

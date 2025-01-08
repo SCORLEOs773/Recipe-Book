@@ -29,6 +29,7 @@ import { ViewButtonComponent } from './view-button/view-button.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CookieService } from 'ngx-cookie-service';
 import { RandomRecipeComponent } from './random-recipe/random-recipe.component';
+import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { RandomRecipeComponent } from './random-recipe/random-recipe.component';
     ViewButtonComponent,
     ProfileComponent,
     RandomRecipeComponent,
+    RecipeSearchComponent,
   ],
   imports: [
     BrowserModule,

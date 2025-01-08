@@ -53,6 +53,13 @@
       >
         <a class="nav-link" routerLink="/cusine-atlas">Cusine Atlas</a>
       </li>
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        *ngIf="isAuthenticated"
+      >
+        <a class="nav-link" routerLink="/search">🔎Search</a>
+      </li>
     </ul>
     <ul class="navbar-nav ms-auto px-5 d-flex">
       <li
