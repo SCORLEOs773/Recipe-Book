@@ -1,0 +1,24 @@
+<div *ngIf="recipe" class="recipe-container">
+  <div class="recipe-image">
+    <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" />
+    <button (click)="getRandomRecipe()">Get Another Recipe</button>
+  </div>
+  <div class="recipe-details">
+    <h1>{{ recipe.strMeal }}</h1>
+    <p><strong>Category:</strong> {{ recipe.strCategory }}</p>
+    <p><strong>Region:</strong> {{ recipe.strArea }}</p>
+    <p><strong>Instructions:</strong></p>
+    <div class="instructions">
+      <p>{{ recipe.strInstructions }}</p>
+    </div>
+    <ul>
+      <li *ngFor="let ingredient of getIngredients()">
+        {{ ingredient }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="!recipe" class="loading">
+  <p>Loading a random recipe...</p>
+</div>

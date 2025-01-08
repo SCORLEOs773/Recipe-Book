@@ -28,6 +28,7 @@ import { SearchComponent } from './search/search.component';
 import { ViewButtonComponent } from './view-button/view-button.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CookieService } from 'ngx-cookie-service';
+import { RandomRecipeComponent } from './random-recipe/random-recipe.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CookieService } from 'ngx-cookie-service';
     SearchComponent,
     ViewButtonComponent,
     ProfileComponent,
+    RandomRecipeComponent,
   ],
   imports: [
     BrowserModule,

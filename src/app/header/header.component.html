@@ -68,6 +68,24 @@
           >Shopping List</a
         >
       </li>
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        *ngIf="isAuthenticated"
+      >
+        <a
+          class="nav-link"
+          routerLink="/recipe-generator"
+          style="
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+          "
+          >Recipes Around the World</a
+        >
+      </li>
     </ul>
     <ul class="navbar-nav ms-auto px-5 d-flex">
       <li

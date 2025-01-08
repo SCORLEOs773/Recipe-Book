@@ -9,6 +9,7 @@ import { RecipeResolverService } from './recipes/recipe-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGaurd } from './auth/auth.gaurd';
 import { ProfileComponent } from './profile/profile.component';
+import { RandomRecipeComponent } from './random-recipe/random-recipe.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'recipe-generator', component: RandomRecipeComponent },
 ];
 
 @NgModule({
