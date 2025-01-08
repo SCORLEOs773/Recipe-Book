@@ -37,54 +37,21 @@
         [routerLinkActive]="['active']"
         *ngIf="isAuthenticated"
       >
-        <a
-          class="nav-link"
-          routerLink="/recipes"
-          style="
-            font-family: 'Arial', sans-serif;
-            font-size: 1.1rem;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-          "
-          >Recipes</a
-        >
+        <a class="nav-link" routerLink="/recipes">Recipes</a>
       </li>
       <li
         class="nav-item"
         [routerLinkActive]="['active']"
         *ngIf="isAuthenticated"
       >
-        <a
-          class="nav-link"
-          routerLink="/shopping-list"
-          style="
-            font-family: 'Arial', sans-serif;
-            font-size: 1.1rem;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-          "
-          >Shopping List</a
-        >
+        <a class="nav-link" routerLink="/shopping-list">Shopping List</a>
       </li>
       <li
         class="nav-item"
         [routerLinkActive]="['active']"
         *ngIf="isAuthenticated"
       >
-        <a
-          class="nav-link"
-          routerLink="/recipe-generator"
-          style="
-            font-family: 'Arial', sans-serif;
-            font-size: 1.1rem;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-          "
-          >Recipes Around the World</a
-        >
+        <a class="nav-link" routerLink="/cusine-atlas">Cusine Atlas</a>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto px-5 d-flex">

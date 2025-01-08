@@ -2,9 +2,17 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 import { DataStorageService } from './../shared/data-storage.service';
-import { Component, DoCheck, EventEmitter, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  EventEmitter,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
-
 
 @Component({
   selector: 'app-header',
@@ -19,7 +27,11 @@ export class HeaderComponent implements OnInit, OnDestroy, DoCheck {
   isAuthenticated = false;
   private userSub: Subscription;
 
-  constructor(private dataStorageService: DataStorageService, private authService: AuthService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private dataStorageService: DataStorageService,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.userSub = this.authService.user.subscribe((user: User) => {
@@ -37,7 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy, DoCheck {
 
   ngDoCheck() {
     this.isAdmin = JSON.parse(localStorage.getItem('isAdmin') || 'false');
-}
+  }
 
   ngOnDestroy() {
     if (this.userSub) {
@@ -49,16 +61,14 @@ export class HeaderComponent implements OnInit, OnDestroy, DoCheck {
     this.featureSelected.emit(feature);
   }
 
-  onSaveData(){
+  onSaveData() {
     this.dataStorageService.storeRecipes();
-}
-onFetchData(){
-  this.dataStorageService.fetchRecipes().subscribe();
-}
+  }
+  onFetchData() {
+    this.dataStorageService.fetchRecipes().subscribe();
+  }
 
-onLogout()
-{
-  this.authService.logout();
-}
-
+  onLogout() {
+    this.authService.logout();
+  }
 }

@@ -35,7 +35,7 @@ const appRoutes: Routes = [
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'recipe-generator', component: RandomRecipeComponent },
+  { path: 'cusine-atlas', component: RandomRecipeComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,49 @@
+.navbar {
+  background-image: url("https://img.freepik.com/premium-vector/abstract-background-with-blue-turquoise-waves_632473-9.jpg");
+  background-size: cover;
+
+  .navbar-brand {
+    font-family: "Arial", sans-serif;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .nav-link {
+    font-family: "Arial", sans-serif;
+    font-size: 1.1rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .nav-item.active .nav-link,
+  .nav-link:hover {
+    color: #4d9c89;
+  }
+
+  .nav-item.dropdown .dropdown-menu {
+    background-color: rgba(77, 156, 137, 0.9);
+  }
+
+  .dropdown-item {
+    font-family: "Arial", sans-serif;
+    font-size: 1.1rem;
+    color: #4d9c89;
+    cursor: pointer;
+  }
+
+  .dropdown-menu-end {
+    right: 0;
+    left: auto;
+  }
+
+  .loading {
+    text-align: center;
+    font-size: 1.2em;
+    color: #888;
+  }
+}
